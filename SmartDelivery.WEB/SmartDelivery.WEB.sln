@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartDelivery.WEB", "SmartDelivery.WEB.csproj", "{C3F8DA4E-F22D-4148-AD7F-2B199D1DF7B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartDelivery.WEB", "SmartDelivery.WEB.csproj", "{C3F8DA4E-F22D-4148-AD7F-2B199D1DF7B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartDelivery.Data", "..\SmartDelivery.Data\SmartDelivery.Data.csproj", "{2A8AF054-C504-403A-AC63-83C7A8D2A183}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartDelivery.Data", "..\SmartDelivery.Data\SmartDelivery.Data.csproj", "{2A8AF054-C504-403A-AC63-83C7A8D2A183}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartDelivery.Infrastructure", "..\SmartDelivery.Infrastructure\SmartDelivery.Infrastructure.csproj", "{09572DCB-7C7F-4C20-B59C-8064C4B06849}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2A8AF054-C504-403A-AC63-83C7A8D2A183}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A8AF054-C504-403A-AC63-83C7A8D2A183}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A8AF054-C504-403A-AC63-83C7A8D2A183}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09572DCB-7C7F-4C20-B59C-8064C4B06849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09572DCB-7C7F-4C20-B59C-8064C4B06849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09572DCB-7C7F-4C20-B59C-8064C4B06849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09572DCB-7C7F-4C20-B59C-8064C4B06849}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
