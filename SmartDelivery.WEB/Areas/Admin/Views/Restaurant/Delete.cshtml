@@ -1,0 +1,123 @@
+﻿@model SmartDelivery.Data.Entities.Restaurant
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-success mb-5"> Edycja Restauracji </h2>
+<br />
+
+<form method="post" asp-action="Edit">
+    <div class="font-weight-bold text-info">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="AddressId" id="addressId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="Name" class="col-form-label font-weight-bold text-info">Nazwa restauracji:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Name" class="disabled form-control" />
+                <span asp-validation-for="Name" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="Nip" class="col-form-label font-weight-bold text-info">Nip restauracji:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Nip" class="disabled form-control" />
+                <span asp-validation-for="Nip" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="OpenAt" class="disabled col-form-label">Otwarcie:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="OpenAt" type="time" id="default-picker" class="disabled form-control" placeholder="Select time">
+                <span asp-validation-for="OpenAt" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="CloseAt" class="disabled col-form-label">Zamknięcie:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="CloseAt" type="time" id="default-picker" class="form-control" placeholder="Select time">
+                <span asp-validation-for="CloseAt" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="Address.PhoneNumber" class="col-form-label font-weight-bold text-info">Numer telefonu:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Address.PhoneNumber" class="disabled form-control" />
+                <span asp-validation-for="Address.PhoneNumber" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="Address.Country" class="col-form-label font-weight-bold text-info">Country:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Address.Country" class="disabled form-control" />
+                <span asp-validation-for="Address.Country" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="Address.City" class="col-form-label font-weight-bold text-info">Miasto:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Address.City" class="disabled form-control" />
+                <span asp-validation-for="Address.City" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="Address.ZipCode" class="col-form-label font-weight-bold text-info">Kod pocztowy:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Address.ZipCode" class="disabled form-control" />
+                <span asp-validation-for="Address.ZipCode" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="Address.Street" class="col-form-label font-weight-bold text-info">Ulica:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Address.Street" class="disabled form-control" />
+                <span asp-validation-for="Address.Street" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="Address.HouseNumber" class="col-form-label font-weight-bold text-info">Numer domu:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Address.HouseNumber" class="disabled form-control" />
+                <span asp-validation-for="Address.HouseNumber" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="Address.FlatNumber" class="col-form-label font-weight-bold text-info">Numer mieszkania:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Address.FlatNumber" class="disabled form-control" />
+                <span asp-validation-for="Address.FlatNumber" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="col-5 mt-3 offset-2">
+            <partial name="PartialView/_DeleteAndBackToListButton" model="Model.Id" />
+        </div>
+    </div>
+</form>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

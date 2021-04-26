@@ -1,0 +1,66 @@
+﻿@model SmartDelivery.WEB.Models.RestaurantListViewModel
+
+@{
+    ViewData["Title"] = "Restaurant's list";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="col-12 text-center">
+    <h1 class="text-secondary"> Restaurants List</h1>
+</div>
+
+<div class="p-1">
+    <partial name="PartialView/_CreateButtonPartial" />
+</div>
+
+<form method="get">
+    <br />
+    <br />
+    <partial name="PartialView/_SearchByRestaurantAndByCity" />
+    <div class="p-1">
+        @if (Model.Restaurants.Count() > 0)
+        {
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            Restaurant name
+                        </th>
+                        <th>
+                            City
+                        </th>
+                        <th>
+                            Postal code
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.Restaurants)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.PostalCode)
+                        </td>
+                        <td>
+                            <partial name="PartialView/_TableButtonPartial" model="item.Id" />
+                        </td>
+                    </tr>
+                }
+            </table>
+            <partial name="PartialView/_Pagination" model="@Model.PagingInfo" />
+        }
+        else
+        {
+            <p>No restaurants exist...</p>
+        }
+    </div>
+    <br />
+</form>

@@ -1,0 +1,50 @@
+﻿@model IList<SmartDelivery.Data.Entities.Category>
+
+@{
+    ViewData["Title"] = "Categories list";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<form method="get">
+    <div class="">
+        <h1 class="text-secondary"> Categories list</h1>
+    </div>
+    <br />
+    <div class="p-1">
+        <partial name="PartialView/_CreateButtonPartial" />
+    </div>
+    <div class="p-1 d-flex justify-content-center">
+        @if (Model.Count() > 0)
+        {
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            Category name
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.Title)
+                        </td>
+                        <td>
+                            <partial name="PartialView/_TableButtonPartial" model="item.Id" />
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <p>Categories don't exist... </p>
+        }
+    </div>
+    <br />
+    <br />
+</form>
