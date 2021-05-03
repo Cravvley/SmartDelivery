@@ -27,10 +27,7 @@ namespace SmartDelivery.WEB
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<AppDbContext>();
-            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
-                 .AddRoles<IdentityRole<int>>()
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                  .AddEntityFrameworkStores<AppDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();

@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace SmartDelivery.Data.EF
 {
-    public class AppDbContext : IdentityDbContext<User, IdentityRole<int>, int>
+    public class AppDbContext : IdentityDbContext
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {
@@ -18,6 +18,7 @@ namespace SmartDelivery.Data.EF
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
+        public DbSet<User> User { get; set; }
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<Restaurant> Restaurant { get; set; }
         public virtual DbSet<Dish> Dishes { get; set; }

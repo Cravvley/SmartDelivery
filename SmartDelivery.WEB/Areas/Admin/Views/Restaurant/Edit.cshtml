@@ -4,7 +4,7 @@
 }
 
 <br />
-<h2 class="text-success mb-5"> Edycja Restauracji </h2>
+<h2 class="text-success mb-5 text-warning"> Edit @Model.Name restaurant </h2>
 <br />
 
 <form method="post" asp-action="Edit">
@@ -14,7 +14,7 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Name" class="col-form-label font-weight-bold text-info">Nazwa restauracji:</label>
+                <label asp-for="Name" class="col-form-label font-weight-bold text-info">Restaurant name:</label>
             </div>
             <div class="col-5">
                 <input asp-for="Name" class="form-control" />
@@ -23,7 +23,7 @@
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Nip" class="col-form-label font-weight-bold text-info">Nip restauracji:</label>
+                <label asp-for="Nip" class="col-form-label font-weight-bold text-info">Restaurant NIP:</label>
             </div>
             <div class="col-5">
                 <input asp-for="Nip" class="form-control" />
@@ -32,16 +32,17 @@
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="OpenAt" class="col-form-label">Otwarcie:</label>
+                <label asp-for="OpenAt" class="col-form-label">Open:</label>
             </div>
             <div class="col-5">
                 <input asp-for="OpenAt" type="time" id="default-picker" class="form-control" placeholder="Select time">
                 <span asp-validation-for="OpenAt" class="text-danger d-flex justify-content-center"></span>
             </div>
         </div>
+
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="CloseAt" class="col-form-label">Zamknięcie:</label>
+                <label asp-for="CloseAt" class="col-form-label">Close:</label>
             </div>
             <div class="col-5">
                 <input asp-for="CloseAt" type="time" id="default-picker" class="form-control" placeholder="Select time">
@@ -50,7 +51,7 @@
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Address.PhoneNumber" class="col-form-label font-weight-bold text-info">Numer telefonu:</label>
+                <label asp-for="Address.PhoneNumber" class="col-form-label font-weight-bold text-info">Phone number:</label>
             </div>
             <div class="col-5">
                 <input asp-for="Address.PhoneNumber" class="form-control" />
@@ -68,7 +69,7 @@
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Address.City" class="col-form-label font-weight-bold text-info">Miasto:</label>
+                <label asp-for="Address.City" class="col-form-label font-weight-bold text-info">City:</label>
             </div>
             <div class="col-5">
                 <input asp-for="Address.City" class="form-control" />
@@ -77,7 +78,7 @@
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Address.ZipCode" class="col-form-label font-weight-bold text-info">Kod pocztowy:</label>
+                <label asp-for="Address.ZipCode" class="col-form-label font-weight-bold text-info">Zip-code:</label>
             </div>
             <div class="col-5">
                 <input asp-for="Address.ZipCode" class="form-control" />
@@ -86,7 +87,7 @@
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Address.Street" class="col-form-label font-weight-bold text-info">Ulica:</label>
+                <label asp-for="Address.Street" class="col-form-label font-weight-bold text-info">Street:</label>
             </div>
             <div class="col-5">
                 <input asp-for="Address.Street" class="form-control" />
@@ -95,7 +96,7 @@
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Address.HouseNumber" class="col-form-label font-weight-bold text-info">Numer domu:</label>
+                <label asp-for="Address.HouseNumber" class="col-form-label font-weight-bold text-info">Flat number:</label>
             </div>
             <div class="col-5">
                 <input asp-for="Address.HouseNumber" class="form-control" />
@@ -104,7 +105,7 @@
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Address.FlatNumber" class="col-form-label font-weight-bold text-info">Numer mieszkania:</label>
+                <label asp-for="Address.FlatNumber" class="col-form-label font-weight-bold text-info">House number:</label>
             </div>
             <div class="col-5">
                 <input asp-for="Address.FlatNumber" class="form-control" />
@@ -113,15 +114,8 @@
         </div>
     </div>
     <div class="d-flex justify-content-center">
-        <div class="col-5 offset-2 p-0">
-            <div class="row">
-                <div class="col-6">
-                    <input type="submit" class="btn btn-warning form-control" asp-route-id="@Model" value="Uaktualnij" />
-                </div>
-                <div class="col-6">
-                    <a asp-action="Index" class="btn btn-secondary form-control">Powrót</a>
-                </div>
-            </div>
+        <div class="col-5 offset-2">
+            <partial name="PartialView/_EditAndBackToListButton" model="Model.Id" />
         </div>
     </div>
 </form>

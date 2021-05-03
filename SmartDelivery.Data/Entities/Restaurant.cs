@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -26,5 +27,7 @@ namespace SmartDelivery.Data.Entities
 
         [ForeignKey("AddressId")]
         public virtual Address Address { get; set; }
+
+        public virtual IList<User> Employees { get; set; }
     }
 }

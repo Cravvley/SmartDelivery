@@ -4,56 +4,57 @@
 }
 
 <br />
-<h2 class="text-success mb-5"> Edycja Restauracji </h2>
+<h2 class="text-success mb-5 text-danger"> Delete @Model.Name restaurant</h2>
 <br />
 
-<form method="post" asp-action="Edit">
+<form method="post" asp-action="Delete">
     <div class="font-weight-bold text-info">
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="AddressId" id="addressId" />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Name" class="col-form-label font-weight-bold text-info">Nazwa restauracji:</label>
+                <label asp-for="Name" class="col-form-label font-weight-bold text-info">Restaurant name:</label>
             </div>
             <div class="col-5">
-                <input asp-for="Name" class="disabled form-control" />
+                <input asp-for="Name" disabled class="form-control" />
                 <span asp-validation-for="Name" class="text-danger d-flex justify-content-center"></span>
             </div>
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Nip" class="col-form-label font-weight-bold text-info">Nip restauracji:</label>
+                <label asp-for="Nip" class="col-form-label font-weight-bold text-info">Restaurant NIP:</label>
             </div>
             <div class="col-5">
-                <input asp-for="Nip" class="disabled form-control" />
+                <input asp-for="Nip" disabled class="form-control" />
                 <span asp-validation-for="Nip" class="text-danger d-flex justify-content-center"></span>
             </div>
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="OpenAt" class="disabled col-form-label">Otwarcie:</label>
+                <label asp-for="OpenAt" class="col-form-label">Open:</label>
             </div>
             <div class="col-5">
-                <input asp-for="OpenAt" type="time" id="default-picker" class="disabled form-control" placeholder="Select time">
+                <input asp-for="OpenAt" disabled type="time" id="default-picker" class="form-control" placeholder="Select time">
                 <span asp-validation-for="OpenAt" class="text-danger d-flex justify-content-center"></span>
             </div>
         </div>
+
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="CloseAt" class="disabled col-form-label">Zamknięcie:</label>
+                <label asp-for="CloseAt" class="col-form-label">Close:</label>
             </div>
             <div class="col-5">
-                <input asp-for="CloseAt" type="time" id="default-picker" class="form-control" placeholder="Select time">
+                <input asp-for="CloseAt" disabled type="time" id="default-picker" class="form-control" placeholder="Select time">
                 <span asp-validation-for="CloseAt" class="text-danger d-flex justify-content-center"></span>
             </div>
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Address.PhoneNumber" class="col-form-label font-weight-bold text-info">Numer telefonu:</label>
+                <label asp-for="Address.PhoneNumber" class="col-form-label font-weight-bold text-info">Phone number:</label>
             </div>
             <div class="col-5">
-                <input asp-for="Address.PhoneNumber" class="disabled form-control" />
+                <input asp-for="Address.PhoneNumber" disabled class="form-control" />
                 <span asp-validation-for="Address.PhoneNumber" class="text-danger d-flex justify-content-center"></span>
             </div>
         </div>
@@ -62,59 +63,59 @@
                 <label asp-for="Address.Country" class="col-form-label font-weight-bold text-info">Country:</label>
             </div>
             <div class="col-5">
-                <input asp-for="Address.Country" class="disabled form-control" />
+                <input asp-for="Address.Country" disabled class="form-control" />
                 <span asp-validation-for="Address.Country" class="text-danger d-flex justify-content-center"></span>
             </div>
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Address.City" class="col-form-label font-weight-bold text-info">Miasto:</label>
+                <label asp-for="Address.City" class="col-form-label font-weight-bold text-info">City:</label>
             </div>
             <div class="col-5">
-                <input asp-for="Address.City" class="disabled form-control" />
+                <input asp-for="Address.City" disabled class="form-control" />
                 <span asp-validation-for="Address.City" class="text-danger d-flex justify-content-center"></span>
             </div>
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Address.ZipCode" class="col-form-label font-weight-bold text-info">Kod pocztowy:</label>
+                <label asp-for="Address.ZipCode" class="col-form-label font-weight-bold text-info">Zip-code:</label>
             </div>
             <div class="col-5">
-                <input asp-for="Address.ZipCode" class="disabled form-control" />
+                <input asp-for="Address.ZipCode" disabled class="form-control" />
                 <span asp-validation-for="Address.ZipCode" class="text-danger d-flex justify-content-center"></span>
             </div>
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Address.Street" class="col-form-label font-weight-bold text-info">Ulica:</label>
+                <label asp-for="Address.Street" class="col-form-label font-weight-bold text-info">Street:</label>
             </div>
             <div class="col-5">
-                <input asp-for="Address.Street" class="disabled form-control" />
+                <input asp-for="Address.Street" disabled class="form-control" />
                 <span asp-validation-for="Address.Street" class="text-danger d-flex justify-content-center"></span>
             </div>
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Address.HouseNumber" class="col-form-label font-weight-bold text-info">Numer domu:</label>
+                <label asp-for="Address.HouseNumber" class="col-form-label font-weight-bold text-info">Flat number:</label>
             </div>
             <div class="col-5">
-                <input asp-for="Address.HouseNumber" class="disabled form-control" />
+                <input asp-for="Address.HouseNumber" disabled class="form-control" />
                 <span asp-validation-for="Address.HouseNumber" class="text-danger d-flex justify-content-center"></span>
             </div>
         </div>
         <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
             <div class="col-2">
-                <label asp-for="Address.FlatNumber" class="col-form-label font-weight-bold text-info">Numer mieszkania:</label>
+                <label asp-for="Address.FlatNumber" class="col-form-label font-weight-bold text-info">House number:</label>
             </div>
             <div class="col-5">
-                <input asp-for="Address.FlatNumber" class="disabled form-control" />
+                <input asp-for="Address.FlatNumber" disabled class="form-control" />
                 <span asp-validation-for="Address.FlatNumber" class="text-danger d-flex justify-content-center"></span>
             </div>
         </div>
-    </div>
-    <div class="d-flex justify-content-center">
-        <div class="col-5 mt-3 offset-2">
-            <partial name="PartialView/_DeleteAndBackToListButton" model="Model.Id" />
+        <div class="d-flex justify-content-center">
+            <div class="col-5 mt-3 offset-2">
+                <partial name="PartialView/_DeleteAndBackToListButton" model="Model.Id" />
+            </div>
         </div>
     </div>
 </form>

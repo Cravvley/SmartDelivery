@@ -4,10 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 <br />
-<h1 class="text-info mb-5">@Model.Category.Title details</h1>
+<h1 class="text-info mb-5 text-secondary">Category @Model.Category.Title details</h1>
 <br />
 
-<form method="post" asp-action="Edit">
+<form method="post" asp-action="Details">
     @if (Model.Category.ParentId == null)
     {
         <div class="row p-1">
@@ -66,7 +66,7 @@
 @if (@Model.Category.ParentId is null)
 {
     <div class="col-4 p-0">
-        <a asp-action="Index" class="btn btn-success form-control">Powrót</a>
+        <a asp-action="Index" class="btn btn-success form-control">Back to list</a>
     </div> }
 else
 {
