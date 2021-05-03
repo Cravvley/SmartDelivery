@@ -1,4 +1,4 @@
-﻿namespace SmartDelivery.Infrastructure.Common.Enums
+﻿namespace SmartDelivery.Data.Enums
 {
     public enum EnumPaymentStatus : int
     {
