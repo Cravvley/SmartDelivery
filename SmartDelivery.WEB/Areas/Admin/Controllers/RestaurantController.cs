@@ -11,7 +11,7 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
     public class RestaurantController : Controller
     {
         private readonly IRestaurantService _restaurantService;
-        
+
         private const int PageSize = 5;
 
         public RestaurantController(IRestaurantService restaurantService)
@@ -25,7 +25,7 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
 
             var restaurantListVM = new RestaurantListViewModel()
             {
-                Restaurants= restaurants
+                Restaurants = restaurants
             };
 
             const string Url = "/Admin/Restaurant/Index?productPage=:";
@@ -57,7 +57,7 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
 
             var exist = await _restaurantService.Exist(s => s.Address.City.ToLower() == restaurant.Address.City.ToLower() && s.Address.Country.ToLower()
                                 == restaurant.Address.Country.ToLower() && s.Name.ToLower() == restaurant.Name.ToLower() && s.Address.ZipCode.ToLower()
-                                == restaurant.Address.ZipCode.ToLower() && s.Address.FlatNumber.ToLower() == restaurant.Address.FlatNumber.ToLower() 
+                                == restaurant.Address.ZipCode.ToLower() && s.Address.FlatNumber.ToLower() == restaurant.Address.FlatNumber.ToLower()
                                 && s.Address.HouseNumber.ToLower() == restaurant.Address.HouseNumber.ToLower());
 
             if (exist)
@@ -104,8 +104,9 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
         }
 
         public async Task<IActionResult> Details(int? id)
-                     => View(await _restaurantService.Get(id));
-
+        {
+            return View(await _restaurantService.Get(id));
+        }
         public async Task<IActionResult> Delete(int? id)
                 => View(await _restaurantService.Get(id));
 
@@ -117,5 +118,12 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public  IActionResult AddWorker(int? id) {
+            TempData["RestaurantId"] = id;
+            return RedirectToPage("/Account/Register", new { area = "Identity" });
+        }
+
+        public async Task<IActionResult> Workers(int? id)
+            => View(await _restaurantService.GetWorkers(id));
     }
 }

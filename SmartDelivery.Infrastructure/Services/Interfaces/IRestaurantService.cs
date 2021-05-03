@@ -26,5 +26,9 @@ namespace SmartDelivery.Infrastructure.Services.Interfaces
         Task<IList<RestaurantDto>> GetPaginatedHeaders(Expression<Func<Restaurant, bool>> filter = null, int pageSize = 0, int productPage = 0);
 
         Task<(IList<RestaurantDto> restaurants, int restaurantsCount)> GetFiltered(string restaurantName = null, string cityName = null, int? pageSize = null, int? productPage = null);
+
+        Task AddWorker(int ?restaurantId, User worker);
+
+        Task<IList<User>> GetWorkers(int ?restaurantId);
     }
 }

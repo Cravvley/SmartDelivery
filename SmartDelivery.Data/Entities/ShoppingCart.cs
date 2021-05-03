@@ -12,10 +12,10 @@ namespace SmartDelivery.Data.Entities
         public int Count { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public int DishId { get; set; }
 
         [Required]
-        public int DishId { get; set; }
+        public string UserId { get; set; }
 
         [ForeignKey("UserId")]
         public virtual User User { get; set; }

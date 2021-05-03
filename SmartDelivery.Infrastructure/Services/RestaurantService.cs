@@ -138,5 +138,28 @@ namespace SmartDelivery.Infrastructure.Services
 
             return (restaurants, restaurants.Count);
         }
+
+        public async Task AddWorker(int ?restaurantId, User worker)
+        {
+            var restaurantEntity = await _restaurantRepository.Get(restaurantId.Value);
+            if (restaurantEntity is null)
+            {
+                throw new ArgumentNullException("restaurant doesn't exist");
+            }
+            
+            restaurantEntity.Employees.Add(worker);
+            await _restaurantRepository.Update(restaurantEntity);
+        }
+
+        public async Task<IList<User>> GetWorkers(int ? restaurantId)
+        {
+            var restaurantEntity = await _restaurantRepository.Get(restaurantId.Value);
+            if (restaurantEntity is null)
+            {
+                throw new ArgumentNullException("restaurant doesn't exist");
+            }
+            return restaurantEntity.Employees;
+        }
+
     }
 }
