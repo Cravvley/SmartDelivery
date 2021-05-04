@@ -12,7 +12,7 @@ namespace SmartDelivery.Infrastructure.Mappers
             {
                 cfg.CreateMap<Restaurant, RestaurantDto>();
                 cfg.CreateMap<Category, CategoryRequest>();
-
+                cfg.CreateMap<Category, SubCategoryRequest>();
             }).CreateMapper();
     }
 }
