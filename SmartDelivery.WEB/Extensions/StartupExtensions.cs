@@ -12,12 +12,14 @@ namespace SmartDelivery.WEB.Extensions
         {
             services.AddScoped<IRestaurantService, RestaurantService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IDishService, DishService>();
         }
 
         public static void AddOurRepositories(this IServiceCollection services)
         {
             services.AddScoped<IRestaurantRepository, RestaurantRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IDishRepository, DishRepository>();
         }
     }
 }

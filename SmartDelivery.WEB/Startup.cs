@@ -6,9 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SmartDelivery.Data.EF;
-using SmartDelivery.Data.Entities;
 using SmartDelivery.Infrastructure.Mappers;
 using SmartDelivery.WEB.Extensions;
+using System.Globalization;
 
 namespace SmartDelivery.WEB
 {
@@ -56,6 +56,9 @@ namespace SmartDelivery.WEB
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
 
             app.UseRouting();
 

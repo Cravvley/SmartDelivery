@@ -11,6 +11,11 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
     public class UserController : Controller
     {
         private readonly AppDbContext _db;
+
+        public UserController(AppDbContext db)
+        {
+            _db = db;
+        }
         public async Task<IActionResult> Index()
         {
             var claimsIdentity = (ClaimsIdentity)this.User.Identity;

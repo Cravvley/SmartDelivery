@@ -1,0 +1,113 @@
+﻿@model SmartDelivery.Data.Entities.Dish
+
+@{ ViewData["Title"] = "Create product";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<br />
+<h1 class="text-success">Add dish</h1>
+<br />
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="font-weight-bold text-info">
+        <input type="hidden" asp-for="CategoryId" id="categoryId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center">
+            <div class="col-2">
+                <label asp-for="Title" class="col-form-label">dish name:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center">
+            <div class="col-2">
+                <label asp-for="Description" class="col-form-label">Description:</label>
+            </div>
+            <div class="col-5">
+                <textarea asp-for="Description" class="form-control" id="textarea1" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center">
+            <div class="col-2">
+                <label asp-for="GrossPrice" class="col-form-label ">Product price:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="GrossPrice" class="form-control" />
+                <span asp-validation-for="GrossPrice" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center">
+            <div class="col-5 offset-2">
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input id="projectImage" name="files" multiple type="file" class="custom-file-input">
+                        <label class="custom-file-label" for="projectImage">Choose a photo</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center">
+            <div class="col-2">
+                <label asp-for="Category" class="col-form-label ">Product category:</label>
+            </div>
+            <div class="col-5">
+                <input type="text" autocomplete="off" id="Category" placeholder="Select" class="comboTreeInputBox" readonly />
+                <span asp-validation-for="CategoryId" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row col-12 p-0 d-flex justify-content-center">
+        <div class="col-5 offset-2">
+            <partial name="PartialView/_CreateAndBackToListButton" />
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/js/comboTreePlugin.js"></script>
+    <script>
+        const url = "/Admin/Category/GetCategories";
+        $(document).ready(() => {
+            $.getJSON(url, data => {
+                console.log(data.length);
+                if (data.length != 0) {
+                    $("#categoryId").val(data[0].id);
+                    const instance = $('#Category').comboTree({
+                        source: data,
+                        selected: [data[0].id],
+                        isMultiple: false,
+                    });
+                    $('#Category').change(() => {
+                        let ids = instance.getSelectedIds();
+                        $("#categoryId").val(ids[0]);
+                    });
+                }
+                else {
+                    $(".create").prop('disabled', true);
+                }
+            })
+        })
+        window.addEventListener('load', autosizeLoad("textarea1"));
+        var textarea1 = document.getElementById('textarea1');
+        textarea1.addEventListener('keydown', autosize);
+        function autosize() {
+            var el = this;
+            setTimeout(function () {
+                el.style.cssText = 'height:auto; padding-top:10px; padding-bottom:10px;';
+                el.style.cssText = 'height:' + el.scrollHeight + 'px';
+            }, 0);
+        }
+        function autosizeLoad(value) {
+            var el = document.getElementById(value);
+            setTimeout(function () {
+                el.style.cssText = 'height:auto; padding-top:10px; padding-bottom:10px;';
+                el.style.cssText = 'height:' + el.scrollHeight + 'px';
+            }, 0);
+        }
+    </script>
+}
