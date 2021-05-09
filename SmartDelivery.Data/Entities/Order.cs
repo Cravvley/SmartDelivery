@@ -47,12 +47,12 @@ namespace SmartDelivery.Data.Entities
         [Required]
         public DateTime CreateAt { get; set; }
 
-        [Required]
-        public int UserId { get; set; }
-
         public string Geodata { get; set; }
 
         public DateTime DateOfIssue { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
 
         [ForeignKey("UserId")]
         public virtual User User { get; set; }

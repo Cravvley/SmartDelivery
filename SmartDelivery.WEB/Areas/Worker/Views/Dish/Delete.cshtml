@@ -1,0 +1,89 @@
+﻿@model SmartDelivery.Data.Entities.Dish
+
+@{ ViewData["Title"] = "Delete product";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+<br />
+<h1 class="text-danger mb-5">Delete dish</h1>
+<br />
+
+<form method="post" asp-action="Delete">
+    <div class="row">
+        <input type="hidden" asp-for="Id" />
+        <div class="col-md-8">
+            <div class="form-group row col-12 p-0 d-flex justify-content-center">
+                <div class="col-md-4">
+                    <label asp-for="Title" class="text-info font-weight-bold">Dish name:</label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="Title" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row col-12 p-0 d-flex justify-content-center">
+                <div class="col-4">
+                    <label asp-for="Description" class="text-info font-weight-bold">Description:</label>
+                </div>
+                <div class="col-8">
+                    <textarea asp-for="Description" class="form-control" id="textarea1" rows="5" readonly></textarea>
+                </div>
+            </div>
+            <div class="form-group row col-12 p-0 d-flex justify-content-center">
+                <div class="col-md-4">
+                    <label asp-for="GrossPrice" class="text-info font-weight-bold">Dish price:</label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="GrossPrice" readonly class="form-control" />
+                </div>
+
+            </div>
+            <div class="form-group row col-12 p-0 d-flex justify-content-center">
+                <div class="col-md-4">
+                    <label asp-for="CategoryId" class="text-info font-weight-bold">Dish category:</label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="Category.Title" readonly class="form-control" />
+                </div>
+            </div>
+        </div>
+        @{ if (Model.Image != null)
+            {
+                var base64 = Convert.ToBase64String(Model.Image);
+                var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+
+                <div class="col-md-4 d-none d-md-block">
+                    <img src="@imgsrc" style="border-radius:5px;border: 1px solid #bbb9b9; width: 100%" />
+                </div> } }
+        <div class="col-8 p-0 col-12 p-0 d-flex mt-2 justify-content-center">
+            <div class="col-8">
+                <partial name="PartialView/_DeleteAndBackToListButton" model="Model.Id" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        window.addEventListener('load', autosizeLoad("textarea1"));
+
+        var textarea1 = document.getElementById('textarea1');
+
+        textarea1.addEventListener('keydown', autosize);
+
+        function autosize() {
+            var el = this;
+            setTimeout(function () {
+                el.style.cssText = 'height:auto; padding-top:10px; padding-bottom:10px;';
+                el.style.cssText = 'height:' + el.scrollHeight + 'px';
+            }, 0);
+        }
+
+        function autosizeLoad(value) {
+            var el = document.getElementById(value);
+            setTimeout(function () {
+                el.style.cssText = 'height:auto; padding-top:10px; padding-bottom:10px;';
+                el.style.cssText = 'height:' + el.scrollHeight + 'px';
+            }, 0);
+        }</script>
+}

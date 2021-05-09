@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmartDelivery.Data.Entities;
 using SmartDelivery.Infrastructure.DTOs;
+using SmartDelivery.Infrastructure.Models;
 
 namespace SmartDelivery.Infrastructure.Mappers
 {
@@ -10,7 +11,8 @@ namespace SmartDelivery.Infrastructure.Mappers
             => new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Restaurant, RestaurantDto>();
-
+                cfg.CreateMap<Category, CategoryRequest>();
+                cfg.CreateMap<Category, SubCategoryRequest>();
             }).CreateMapper();
     }
 }

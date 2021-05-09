@@ -25,11 +25,5 @@ namespace SmartDelivery.Data.Entities
 
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
-
-        [Display(Name = "Restaurant")]
-        public int RestaurantId { get; set; }
-
-        [ForeignKey("RestaurantId")]
-        public virtual Restaurant Restaurant{ get; set; }
     }
 }

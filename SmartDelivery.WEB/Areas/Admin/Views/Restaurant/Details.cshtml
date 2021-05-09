@@ -7,6 +7,14 @@
 <h2 class="text-success mb-5 text-secondary"> Restaurant @Model.Name details</h2>
 <br />
 
+<div class="ml-5 mb-3 col-6 text-right">
+    <a asp-action="AddWorker" asp-route-id="@Model.Id" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; New Employee Registration</a>
+</div>
+
+<div class="ml-5 mb-3 col-6 text-right">
+    <a asp-action="Workers" asp-route-id="@Model.Id" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; Workers List</a>
+</div>
+
 <form method="post" asp-action="Details">
     <div class="font-weight-bold text-info">
         <input type="hidden" asp-for="Id" />
