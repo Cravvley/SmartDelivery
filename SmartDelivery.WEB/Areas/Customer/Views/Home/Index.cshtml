@@ -1,8 +1,24 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model HomeViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<br />
+<br />
+
+<form asp-action="Index" method="get">
+    <br />
+    <div class="mt-4 row col-11 col-md-12 offset-1 offset-md-0 container">
+        @foreach (var restaurant in Model.Restaurants)
+        {
+            <div class="card col-md-5 col-12 mb-2 offset-md-1 row">
+                <br />
+                <div class="card-body">
+                    <h5 class="card-title text-center text-info ml-5">@restaurant.Name, @restaurant.Address.City </h5>
+                        <a asp-action="Meals" class="btn form-control btn-primary" asp-route-id="@restaurant.Id">Meals</a>
+                </div>
+            </div>
+        }
+    </div>
+    <br />
+    <partial name="PartialView/_Pagination" model="@Model.PagingInfo" />
+    <br />
+</form>
+
