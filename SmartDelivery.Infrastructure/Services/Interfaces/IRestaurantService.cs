@@ -17,6 +17,8 @@ namespace SmartDelivery.Infrastructure.Services.Interfaces
 
         Task<Restaurant> Get(int? id);
 
+        Task<Restaurant> GetRestaurantByWorker(int? id);
+
         Task<bool> Exist(Expression<Func<Restaurant, bool>> filter);
 
         Task<IList<Restaurant>> GetAllDetails(Expression<Func<Restaurant, bool>> filter = null);

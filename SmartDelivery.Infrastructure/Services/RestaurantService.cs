@@ -161,5 +161,9 @@ namespace SmartDelivery.Infrastructure.Services
             return restaurantEntity.Employees;
         }
 
+        public Task<Restaurant> GetRestaurantByWorker(int? id)
+        {
+            return null;
+        }
     }
 }

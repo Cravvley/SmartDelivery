@@ -29,5 +29,7 @@ namespace SmartDelivery.Data.Entities
         public virtual Address Address { get; set; }
 
         public virtual IList<User> Employees { get; set; }
+
+        public virtual IList<Dish> Meals{ get; set; }
     }
 }
