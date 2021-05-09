@@ -4,7 +4,6 @@ using SmartDelivery.Infrastructure.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SmartDelivery.Infrastructure.Services

@@ -113,8 +113,7 @@ namespace SmartDelivery.WEB.Areas.Identity.Pages.Account
                         await _roleManager.CreateAsync(new IdentityRole(StaticDetails.DefaultUser));
                     }
 
-
-                    if (TempData["RestaurantId"] != null)
+                    if (!(TempData["RestaurantId"] is null))
                     {
                         await _userManager.AddToRoleAsync(user, StaticDetails.RestaurantWorker);
                         int restaurantId = Convert.ToInt32(TempData["RestaurantId"].ToString());
@@ -126,6 +125,7 @@ namespace SmartDelivery.WEB.Areas.Identity.Pages.Account
                     }
                     
                     _logger.LogInformation("User created a new account with password.");
+
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

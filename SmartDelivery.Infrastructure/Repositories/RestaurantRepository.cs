@@ -34,16 +34,20 @@ namespace SmartDelivery.Infrastructure.Repositories
         }
 
         public async Task<Restaurant> Get(int id)
-            => await _db.Restaurant.Include(a=>a.Address).Include(e => e.Employees).SingleOrDefaultAsync(s => s.Id == id);
+            => await _db.Restaurant.Include(a=>a.Address).Include(e => e.Employees)
+            .Include(m=>m.Meals).SingleOrDefaultAsync(s => s.Id == id);
 
         public async Task<Restaurant> Get(Expression<Func<Restaurant, bool>> filter)
-            => await _db.Restaurant.Include(a => a.Address).Include(e=>e.Employees).FirstOrDefaultAsync(filter);
+            => await _db.Restaurant.Include(a => a.Address).
+                Include(m => m.Meals).Include(e=>e.Employees).FirstOrDefaultAsync(filter);
 
         public async Task<IList<Restaurant>> GetAll(Expression<Func<Restaurant, bool>> filter)
-            => await _db.Restaurant.Include(a => a.Address).Include(e => e.Employees).AsNoTracking().Where(filter).AsQueryable().ToListAsync();
+            => await _db.Restaurant.Include(a => a.Address).Include(e => e.Employees).Include(m => m.Meals)
+            .AsNoTracking().Where(filter).AsQueryable().ToListAsync();
 
         public async Task<IList<Restaurant>> GetPaginated(Expression<Func<Restaurant, bool>> filter, int pageSize = 1, int productPage = 1)
-        => await _db.Restaurant.Include(a => a.Address).Include(e => e.Employees).AsNoTracking().Where(filter).AsQueryable().OrderBy(p => p.Name)
+        => await _db.Restaurant.Include(a => a.Address).Include(e => e.Employees).Include(m => m.Meals)
+            .AsNoTracking().Where(filter).AsQueryable().OrderBy(p => p.Name)
                                      .Skip((productPage - 1) * pageSize)
                                      .Take(pageSize).ToListAsync();
 

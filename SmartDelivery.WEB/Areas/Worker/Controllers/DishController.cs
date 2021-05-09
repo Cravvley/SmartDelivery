@@ -3,7 +3,9 @@ using SmartDelivery.Data.Entities;
 using SmartDelivery.Infrastructure.Common.Pagination;
 using SmartDelivery.Infrastructure.Services.Interfaces;
 using SmartDelivery.WEB.Models;
+using System;
 using System.IO;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SmartDelivery.WEB.Areas.Worker.Controllers
@@ -13,22 +15,32 @@ namespace SmartDelivery.WEB.Areas.Worker.Controllers
     {
         private readonly IDishService _dishService;
         private readonly ICategoryService _categoryService;
+        private readonly IRestaurantService _restaurantService;
 
         private const int PageSize = 5;
         public DishController(IDishService dishService,
-            ICategoryService categoryService)
+            ICategoryService categoryService,
+            IRestaurantService restaurantService)
         {
             _dishService = dishService;
             _categoryService = categoryService;
+            _restaurantService = restaurantService;
         }
 
         public async Task<IActionResult> Index(int productPage = 1, string productName = null, string categoryName = null)
         {
-            var (products, productsCount) = await _dishService.GetFiltered(productName, categoryName, PageSize, productPage);
+            //var (products, productsCount) = await _dishService.GetFiltered(productName, categoryName, PageSize, productPage);
+
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            var restaurant = await _restaurantService.GetRestaurantByWorker(claim.Value);
+
+            TempData["RestaurantId"] = restaurant.Id;
 
             var productList = new DishViewModel()
             {
-                Products = products,
+                Products = restaurant.Meals,
             };
 
             const string Url = "/Dish/Index?productPage=:";
@@ -37,7 +49,7 @@ namespace SmartDelivery.WEB.Areas.Worker.Controllers
             {
                 CurrentPage = productPage,
                 ItemsPerPage = PageSize,
-                TotalItem = productsCount,
+                TotalItem = 10,
                 UrlParam = Url
             };
 
@@ -51,8 +63,11 @@ namespace SmartDelivery.WEB.Areas.Worker.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Dish dishModel)
         {
-            if (!ModelState.IsValid) return View(dishModel);
-
+            if (!ModelState.IsValid)
+            {
+                return View(dishModel);
+            }
+      
             var files = HttpContext.Request.Form.Files;
             if (files.Count > 0)
             {
@@ -68,7 +83,13 @@ namespace SmartDelivery.WEB.Areas.Worker.Controllers
                 dishModel.Image = p1;
             }
 
-            await _dishService.Create(dishModel);
+            if (!(TempData["RestaurantId"] is null))
+            {
+                await _dishService.Create(dishModel);
+                int restaurantId = Convert.ToInt32(TempData["RestaurantId"].ToString());
+                await _restaurantService.AddDish(restaurantId, dishModel);
+            }
+
             return RedirectToAction(nameof(Index));
         }
 

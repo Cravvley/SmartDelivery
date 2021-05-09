@@ -17,7 +17,9 @@ namespace SmartDelivery.Infrastructure.Services.Interfaces
 
         Task<Restaurant> Get(int? id);
 
-        Task<Restaurant> GetRestaurantByWorker(int? id);
+        Task<Restaurant> GetRestaurantByWorker(string id);
+
+        Task<IList<Dish>> GetMealsByRestaurant(int ?id);
 
         Task<bool> Exist(Expression<Func<Restaurant, bool>> filter);
 
@@ -30,6 +32,8 @@ namespace SmartDelivery.Infrastructure.Services.Interfaces
         Task<(IList<RestaurantDto> restaurants, int restaurantsCount)> GetFiltered(string restaurantName = null, string cityName = null, int? pageSize = null, int? productPage = null);
 
         Task AddWorker(int ?restaurantId, User worker);
+
+        Task AddDish(int? restaurantId, Dish dish);
 
         Task<IList<User>> GetWorkers(int ?restaurantId);
     }

@@ -5,6 +5,7 @@ using SmartDelivery.Infrastructure.DTOs;
 using SmartDelivery.Infrastructure.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -13,11 +14,16 @@ namespace SmartDelivery.Infrastructure.Services
     public class RestaurantService:IRestaurantService
     {
         private readonly IRestaurantRepository _restaurantRepository;
+        private readonly IUserService _userService;
+        private readonly IDishService _dishService;
         private readonly IMapper _mapper;
 
-        public RestaurantService(IRestaurantRepository restaurantRepository, IMapper mapper)
+        public RestaurantService(IRestaurantRepository restaurantRepository,
+            IUserService userService,IDishService dishService, IMapper mapper)
         {
             _restaurantRepository = restaurantRepository;
+            _userService = userService;
+            _dishService = dishService;
             _mapper = mapper;
         }
 
@@ -39,7 +45,20 @@ namespace SmartDelivery.Infrastructure.Services
                 return;
             }
 
+            var meals = restaurantEntity.Meals;
+            var employess = restaurantEntity.Employees;
+
             await _restaurantRepository.Delete(restaurantEntity);
+
+            foreach (Dish dish in meals)
+            {
+                await _dishService.Delete(dish.Id);
+            }
+
+            foreach (User user in employess)
+            {
+                await _userService.Delete(user.Id);
+            }
         }
 
         public async Task<Restaurant> Get(int? id)
@@ -151,6 +170,18 @@ namespace SmartDelivery.Infrastructure.Services
             await _restaurantRepository.Update(restaurantEntity);
         }
 
+        public async Task AddDish(int? restaurantId, Dish dish)
+        {
+            var restaurantEntity = await _restaurantRepository.Get(restaurantId.Value);
+            if (restaurantEntity is null)
+            {
+                throw new ArgumentNullException("restaurant doesn't exist");
+            }
+
+            restaurantEntity.Meals.Add(dish);
+            await _restaurantRepository.Update(restaurantEntity);
+        }
+
         public async Task<IList<User>> GetWorkers(int ? restaurantId)
         {
             var restaurantEntity = await _restaurantRepository.Get(restaurantId.Value);
@@ -161,9 +192,49 @@ namespace SmartDelivery.Infrastructure.Services
             return restaurantEntity.Employees;
         }
 
-        public Task<Restaurant> GetRestaurantByWorker(int? id)
+        public async Task<Restaurant> GetRestaurantByWorker(string  id)
         {
-            return null;
+            var userEntity = await _userService.Get(id);
+
+            if (userEntity is null)
+            {
+                throw new ArgumentNullException("user doesn't exist");
+            }
+
+            var restaurantEntities= await _restaurantRepository.GetAll(r=>true);
+
+            Restaurant restaurantEntity=null;
+
+            foreach (Restaurant restaurant in restaurantEntities)
+            {
+                foreach (User user in restaurant.Employees)
+                {
+                    if (user.Id == userEntity.Id)
+                    {
+                        restaurantEntity = restaurant;
+                        break;
+                    }
+                }
+            }
+
+            if (restaurantEntity is null)
+            {
+                throw new ArgumentNullException("restaurant doesn't exist");
+            }
+
+            return restaurantEntity;
+        }
+
+        public async Task<IList<Dish>> GetMealsByRestaurant(int ? id)
+        {
+            var restaurantEntity = await _restaurantRepository.Get(id.Value);
+
+            if (restaurantEntity is null)
+            {
+                throw new ArgumentNullException("restaurant doesn't exist");
+            }
+
+            return restaurantEntity.Meals;
         }
     }
 }
