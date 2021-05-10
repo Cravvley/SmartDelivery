@@ -6,6 +6,7 @@ using SmartDelivery.Infrastructure.Common.StaticDetails;
 using SmartDelivery.Infrastructure.Services.Interfaces;
 using SmartDelivery.WEB.Models;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SmartDelivery.WEB.Areas.Admin.Controllers
@@ -121,25 +122,36 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public  IActionResult AddWorker(int? id) {
+        public IActionResult AddWorker(int? id)
+        {
             TempData[StaticDetails.RestaurantId] = id;
             return RedirectToPage("/Account/Register", new { area = "Identity" });
         }
 
-        public async Task<IActionResult> Workers(int? id, int productPage = 1, string searchByEmail = null)
+        public async Task<IActionResult> Workers(int? id, int productPage = 1, string searchByEmail = "")
         {
             if (!(id is null))
             {
                 TempData[StaticDetails.RestaurantWorkersId] = id;
             }
-            
+
             var workers = await _restaurantService.GetWorkers(Convert.ToInt32(TempData[StaticDetails.RestaurantWorkersId].ToString()));
+
+            if (searchByEmail is null)
+            {
+                workers = workers.OrderBy(p => p.Email).Skip((productPage - 1) * PageSize).Take(PageSize).ToList();
+            }
+            else
+            {
+                workers = workers.OrderBy(p => p.Email).Where(p => p.Email.ToLowerInvariant().Contains(searchByEmail.ToLowerInvariant()))
+                              .Skip((productPage - 1) * PageSize).Take(PageSize).ToList();
+            }
 
             var userListVM = new UserListViewModel()
             {
-                Users = workers
+                Users = workers,
             };
-     
+
             string Url = $"/Admin/Restaurant/Workers/{TempData[StaticDetails.RestaurantWorkersId]}?productPage=:";
 
             userListVM.PagingInfo = new PagingInfo

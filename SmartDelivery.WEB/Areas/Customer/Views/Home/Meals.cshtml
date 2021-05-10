@@ -9,7 +9,7 @@
         <h1 class="text-secondary">dish list</h1>
     </div>
     <br />
-    <partial name="PartialView/_SearchForDish" />
+    <partial name="PartialView/_SearchByCategory" />
     <div class="p-1">
         @if (Model.Products.Any())
         {
@@ -56,9 +56,6 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(m => item.Category.Title)
-                            </td>
-                            <td>
-                                <partial name="PartialView/_TableButtonPartial" model="item.Id" />
                             </td>
                         </tr>
                     }

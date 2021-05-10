@@ -8,7 +8,7 @@
 <br />
 
 <form method="post" asp-action="Edit" enctype="multipart/form-data">
-    <div class="row">
+    <div class="row text-info font-weight-bold">
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="CategoryId" id="categoryId" />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -38,10 +38,10 @@
                 </div>
             </div>
             <div class="form-group row col-12 p-0 d-flex justify-content-center">
-                <div class="col-2">
+                <div class="col-md-4">
                     <label asp-for="Category" class="col-form-label ">Product category:</label>
                 </div>
-                <div class="col-5">
+                <div class="col-md-8">
                     <input type="text" autocomplete="off" id="Category" placeholder="Select" class="comboTreeInputBox" readonly />
                     <span asp-validation-for="CategoryId" class="text-danger d-flex justify-content-center"></span>
                 </div>
