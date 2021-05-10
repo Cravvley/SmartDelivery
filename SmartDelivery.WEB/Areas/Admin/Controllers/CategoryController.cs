@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SmartDelivery.Data.Entities;
+using SmartDelivery.Infrastructure.Common.StaticDetails;
 using SmartDelivery.Infrastructure.Services.Interfaces;
 using SmartDelivery.WEB.Models;
 
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SmartDelivery.WEB.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize(Roles = StaticDetails.Admin)]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;

@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SmartDelivery.Data.Entities;
 using SmartDelivery.Infrastructure.Common.Pagination;
+using SmartDelivery.Infrastructure.Common.StaticDetails;
 using SmartDelivery.Infrastructure.Services.Interfaces;
 using SmartDelivery.WEB.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace SmartDelivery.WEB.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize(Roles = StaticDetails.Admin)]
     public class RestaurantController : Controller
     {
         private readonly IRestaurantService _restaurantService;
@@ -119,11 +122,36 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
         }
 
         public  IActionResult AddWorker(int? id) {
-            TempData["RestaurantId"] = id;
+            TempData[StaticDetails.RestaurantId] = id;
             return RedirectToPage("/Account/Register", new { area = "Identity" });
         }
 
-        public async Task<IActionResult> Workers(int? id)
-            => View(await _restaurantService.GetWorkers(id));
+        public async Task<IActionResult> Workers(int? id, int productPage = 1, string searchByEmail = null)
+        {
+            if (!(id is null))
+            {
+                TempData[StaticDetails.RestaurantWorkersId] = id;
+            }
+            
+            var workers = await _restaurantService.GetWorkers(Convert.ToInt32(TempData[StaticDetails.RestaurantWorkersId].ToString()));
+
+            var userListVM = new UserListViewModel()
+            {
+                Users = workers
+            };
+     
+            string Url = $"/Admin/Restaurant/Workers/{TempData[StaticDetails.RestaurantWorkersId]}?productPage=:";
+
+            userListVM.PagingInfo = new PagingInfo
+            {
+                CurrentPage = productPage,
+                ItemsPerPage = PageSize,
+                TotalItem = workers.Count,
+                UrlParam = Url
+            };
+
+            return View(userListVM);
+        }
+
     }
 }

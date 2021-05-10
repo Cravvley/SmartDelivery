@@ -1,45 +1,60 @@
-﻿@model IEnumerable<SmartDelivery.Data.Entities.User>
+﻿@model SmartDelivery.WEB.Models.UserListViewModel
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Workers</h1>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastModificationAt)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastModificationAt)
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<br />
+<br />
+<div class="row">
+    <div class="col-12 text-center">
+        <h1 class="text-secondary">Workers list</h1>
+    </div>
+</div>
+<br />
+<form method="get">
+    <partial name="PartialView/_SearchByEmail" />
+    <div>
+        @if (Model.Users.Count() > 0)
+        {
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            User name
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Phone number
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.Users)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.LastModificationAt)
+                        </td>
+                        <td></td>
+                    </tr>
+                }
+            </table>
+            <partial name="PartialView/_Pagination" model="@Model.PagingInfo" />
+        }
+        else
+        {
+            <p>No worker exists...</p>
+        }
+    </div>
+</form>
