@@ -1,16 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SmartDelivery.Data.Entities;
 using SmartDelivery.Infrastructure.Common.Pagination;
+using SmartDelivery.Infrastructure.Common.StaticDetails;
 using SmartDelivery.Infrastructure.Services.Interfaces;
 using SmartDelivery.WEB.Models;
 using System;
 using System.IO;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SmartDelivery.WEB.Areas.Worker.Controllers
 {
-    [Area("Worker")]
+    [Area("Worker"), Authorize(Roles = StaticDetails.RestaurantWorker)]
     public class DishController : Controller
     {
         private readonly IDishService _dishService;
@@ -27,29 +30,45 @@ namespace SmartDelivery.WEB.Areas.Worker.Controllers
             _restaurantService = restaurantService;
         }
 
-        public async Task<IActionResult> Index(int productPage = 1, string productName = null, string categoryName = null)
+        public async Task<IActionResult> Index(int productPage = 1,  string searchByCategory = null)
         {
-            //var (products, productsCount) = await _dishService.GetFiltered(productName, categoryName, PageSize, productPage);
-
+          
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
             var restaurant = await _restaurantService.GetRestaurantByWorker(claim.Value);
+            var meals = restaurant.Meals;
 
             TempData["RestaurantId"] = restaurant.Id;
 
+            foreach (Dish dish in meals)
+            {
+                dish.Category = await _categoryService.Get(dish.CategoryId);
+            }
+
+            if (searchByCategory is null)
+            {
+                meals = meals.OrderBy(p => p.Category.Title).Skip((productPage - 1) * PageSize).Take(PageSize).ToList();
+            }
+            else
+            {
+                meals = meals.OrderBy(p => p.Category.Title).Where(p => p.Category.Title.ToLowerInvariant().
+                                Contains(searchByCategory.ToLowerInvariant()))
+                                .Skip((productPage - 1) * PageSize).Take(PageSize).ToList();
+            }
+
             var productList = new DishViewModel()
             {
-                Products = restaurant.Meals,
+                Products = meals,
             };
 
-            const string Url = "/Dish/Index?productPage=:";
+            const string Url = "/Worker/Dish/Index?productPage=:";
 
             productList.PagingInfo = new PagingInfo
             {
                 CurrentPage = productPage,
                 ItemsPerPage = PageSize,
-                TotalItem = 10,
+                TotalItem = meals.Count,
                 UrlParam = Url
             };
 

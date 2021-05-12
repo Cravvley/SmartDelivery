@@ -22,5 +22,11 @@ namespace SmartDelivery.Data.Entities
 
         [ForeignKey("DishId")]
         public virtual Dish Dish { get; set; }
+
+        [Required]
+        public int RestaurantId { get; set; }
+
+        [ForeignKey("RestaurantId")]
+        public virtual Restaurant Restaurant { get; set; }
     }
 }

@@ -9,7 +9,7 @@
         <h1 class="text-secondary">dish list</h1>
     </div>
     <br />
-    <partial name="PartialView/_SearchForDish" />
+    <partial name="PartialView/_SearchByCategory" />
     <div class="p-1">
         @if (Model.Products.Any())
         {
@@ -58,7 +58,11 @@
                                 @Html.DisplayFor(m => item.Category.Title)
                             </td>
                             <td>
-                                <partial name="PartialView/_TableButtonPartial" model="item.Id" />
+                                <div class="col-md-6">
+                                    <a asp-action="DishDetails" class="btn btn-success form-control" asp-route-id="@item.Id">
+                                      <i class="fas fa-list-alt"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     }

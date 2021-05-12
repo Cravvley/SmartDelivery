@@ -14,6 +14,7 @@ namespace SmartDelivery.WEB.Extensions
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IDishService, DishService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IShoppingBasketService, ShoppingBasketService>();
         }
 
         public static void AddOurRepositories(this IServiceCollection services)
@@ -22,6 +23,7 @@ namespace SmartDelivery.WEB.Extensions
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IDishRepository, DishRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IShoppingBasketRepository, ShoppingBasketRepository>();
         }
     }
 }
