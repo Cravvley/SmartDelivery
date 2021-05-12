@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SmartDelivery.WEB.Areas.Admin.Controllers
 {
-    [Area("Admin")] //, Authorize(Roles = StaticDetails.Admin)
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -18,9 +18,12 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
         {
             _categoryService = categoryService;
         }
+
+        [Authorize(Roles = StaticDetails.Admin)]
         public async Task<IActionResult> Index()
          => View(await _categoryService.GetAll(x => x.ParentId == null));
 
+        [Authorize(Roles = StaticDetails.Admin)]
         public IActionResult Create(int? id = null)
         {
             ViewBag.Exist = false;
@@ -38,7 +41,7 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
             return View(category);
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken,Authorize(Roles = StaticDetails.Admin)]
         public async Task<IActionResult> Create(Category category)
         {
             ViewBag.Title = "Category";
@@ -66,6 +69,7 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
             }
         }
 
+        [Authorize(Roles = StaticDetails.Admin)]
         public async Task<IActionResult> Details(int? id)
             => View(new CategoryViewModel()
             {
@@ -73,6 +77,7 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
                 Categories = await _categoryService.GetWithParentId(id)
             });
 
+        [Authorize(Roles = StaticDetails.Admin)]
         public async Task<IActionResult> Edit(int? id)
         {
             var categoryEntity = await _categoryService.Get(id);
@@ -82,7 +87,7 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
             return View(categoryEntity);
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken,Authorize(Roles = StaticDetails.Admin)]
         public async Task<IActionResult> Edit(Category category)
         {
             if (!ModelState.IsValid)
@@ -102,10 +107,11 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
             }
         }
 
+        [Authorize(Roles = StaticDetails.Admin)]
         public async Task<IActionResult> Delete(int? id)
                 => View(await _categoryService.Get(id));
 
-        [HttpPost, ActionName("Delete"), ValidateAntiForgeryToken]
+        [HttpPost, ActionName("Delete"), ValidateAntiForgeryToken,Authorize(Roles = StaticDetails.Admin)]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _categoryService.Delete(id);
@@ -113,7 +119,7 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-       // [Authorize(Roles =StaticDetails.RestaurantWorker)]
+        [Authorize]
         public async Task<IActionResult> GetCategories()
             => Json(await _categoryService.GetAllCategoryWithSubCategory());
     }
