@@ -12,6 +12,8 @@ namespace SmartDelivery.Infrastructure.Services.Interfaces
 
         Task<List<ShoppingCart>> GetShoppingCarts(string userId,int ?restaurantId);
 
+        Task<List<ShoppingCart>> GetShoppingCarts(Expression<Func<ShoppingCart, bool>> filter);
+
         Task DeleteShoppingCart(int? id);
 
         Task UpdateShoppingCart(ShoppingCart shoppingCart);

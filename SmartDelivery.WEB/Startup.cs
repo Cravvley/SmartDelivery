@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using SmartDelivery.Data.EF;
 using SmartDelivery.Infrastructure.Mappers;
 using SmartDelivery.WEB.Extensions;
+using System;
 using System.Globalization;
 
 namespace SmartDelivery.WEB
@@ -35,6 +36,13 @@ namespace SmartDelivery.WEB
             services.AddRazorPages();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddSingleton(AutoMapperConfig.Initialize());
+
+            services.AddSession(options =>
+            {
+                options.Cookie.IsEssential = true;
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+            });
 
             services.AddOurServices();
             services.AddOurRepositories();
@@ -64,6 +72,8 @@ namespace SmartDelivery.WEB
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

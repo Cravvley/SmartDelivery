@@ -116,7 +116,7 @@ namespace SmartDelivery.WEB.Areas.Identity.Pages.Account
                     if (!(TempData[StaticDetails.RestaurantId] is null))
                     {
                         await _userManager.AddToRoleAsync(user, StaticDetails.RestaurantWorker);
-                        int restaurantId = Convert.ToInt32(TempData["RestaurantId"].ToString());
+                        int restaurantId = Convert.ToInt32(TempData[StaticDetails.RestaurantId].ToString());
                         await _restaurantService.AddWorker(restaurantId, user);
                     }
                     else

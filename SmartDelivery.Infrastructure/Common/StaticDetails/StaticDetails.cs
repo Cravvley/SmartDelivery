@@ -9,6 +9,5 @@
         public const string RestaurantWorkersId = "RestaurantWorkersId";
         public const string RestaurantMealsId = "RestaurantMealsId";
         public const string ShoppingCartCount = "CartCount";
-
     }
 }

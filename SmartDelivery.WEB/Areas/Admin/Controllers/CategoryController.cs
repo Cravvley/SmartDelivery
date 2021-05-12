@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SmartDelivery.WEB.Areas.Admin.Controllers
 {
-    [Area("Admin"), Authorize(Roles = StaticDetails.Admin)]
+    [Area("Admin")] //, Authorize(Roles = StaticDetails.Admin)
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -113,6 +113,7 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+       // [Authorize(Roles =StaticDetails.RestaurantWorker)]
         public async Task<IActionResult> GetCategories()
             => Json(await _categoryService.GetAllCategoryWithSubCategory());
     }
