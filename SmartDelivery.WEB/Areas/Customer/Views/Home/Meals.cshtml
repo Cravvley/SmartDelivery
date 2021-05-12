@@ -57,6 +57,13 @@
                             <td>
                                 @Html.DisplayFor(m => item.Category.Title)
                             </td>
+                            <td>
+                                <div class="col-md-6">
+                                    <a asp-action="DishDetails" class="btn btn-success form-control" asp-route-id="@item.Id">
+                                      <i class="fas fa-list-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
                         </tr>
                     }
                 </table>

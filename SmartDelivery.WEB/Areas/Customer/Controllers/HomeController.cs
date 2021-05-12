@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SmartDelivery.Data.Entities;
 using SmartDelivery.Infrastructure.Common.Pagination;
@@ -19,13 +20,16 @@ namespace SmartDelivery.WEB.Controllers
         private readonly IDishService _dishService;
         private readonly IRestaurantService _restaurantService;
         private readonly ICategoryService _categoryService;
+        private readonly IShoppingBasketService _shoppingBasketService;
 
         private const int PageSize = 9;
-        public HomeController(IDishService productService, IRestaurantService shopService, ICategoryService categoryService)
+        public HomeController(IDishService productService, IRestaurantService shopService,
+            ICategoryService categoryService, IShoppingBasketService shoppingBasketService)
         {
             _dishService = productService;
             _restaurantService = shopService;
             _categoryService = categoryService;
+            _shoppingBasketService = shoppingBasketService;
         }
 
         public async Task<IActionResult> Index(int productPage = 1)
@@ -53,12 +57,7 @@ namespace SmartDelivery.WEB.Controllers
         public async Task<IActionResult> Meals(int productPage, int? id,string searchByCategory)
         {
 
-            if (!(id is null))
-            {
-                TempData[StaticDetails.RestaurantMealsId] = id;
-            }
-
-            var meals = await _restaurantService.GetMealsByRestaurant(Convert.ToInt32(TempData[StaticDetails.RestaurantMealsId].ToString()));
+            var meals = await _restaurantService.GetMealsByRestaurant(id);
 
             foreach(Dish dish in meals)
             {
@@ -92,6 +91,8 @@ namespace SmartDelivery.WEB.Controllers
                 UrlParam = Url
             };
 
+            TempData[StaticDetails.RestaurantMealsId] = id;
+
             return View(dishList);
         }
 
@@ -99,65 +100,63 @@ namespace SmartDelivery.WEB.Controllers
         public async Task<IActionResult> DishDetails(int id)
         {
             var menuItemFromDb = await _dishService.Get(id);
+            var restaurantId = Convert.ToInt32(TempData[StaticDetails.RestaurantMealsId].ToString());
 
             ShoppingCart cartObj = new ShoppingCart()
             {
                 Dish = menuItemFromDb,
-                DishId = menuItemFromDb.Id
+                DishId = menuItemFromDb.Id,
+                RestaurantId = restaurantId,
             };
+
             return View(cartObj);
         }
 
-        /*if
-       [Authorize]
-       [HttpPost]
-       [ValidateAntiForgeryToken]
-       public async Task<IActionResult> DishDetails(ShoppingCart CartObject)
-       {
-           CartObject.Dish = null;
-           CartObject.Id = 0;
+        [ValidateAntiForgeryToken, Authorize, HttpPost]
+        public async Task<IActionResult> DishDetails(ShoppingCart CartObject)
+        {
+            CartObject.Dish = null;
+            CartObject.Id = 0;
+   
+            if (ModelState.IsValid)
+            {
+                var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                CartObject.UserId = claim.Value;
 
-           (ModelState.IsValid)
-           {
-               var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-               var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-               CartObject.UserId = Convert.ToInt32(claim.Value);
+                ShoppingCart shoppingCart = await _shoppingBasketService.GetShoppingCart(c => c.UserId == CartObject.UserId
+                                             && c.DishId == CartObject.DishId&&c.RestaurantId==CartObject.RestaurantId);
 
-               ShoppingCart shoppingCart = await _shoppingBasketService.GetProduct(c => c.UserId == CartObject.UserId
-                                            && c.DishId == CartObject.DishId);
+                if (shoppingCart is null)
+                {
+                    await _shoppingBasketService.CreateShoppingCart(CartObject);
+                }
+                else
+                {
+                    shoppingCart.Count = shoppingCart.Count + CartObject.Count;
+                    await _shoppingBasketService.UpdateShoppingCart(shoppingCart);
+                }
 
-               if (shoppingCart is null)
-               {
-                   await _shoppingBasketService.CreateProduct(CartObject);
-               }
-               else
-               {
-                   shoppingCart.Count = shoppingCart.Count + CartObject.Count;
-                   await _shoppingBasketService.UpdateProduct(shoppingCart);
+                var count = (await _shoppingBasketService.GetShoppingCarts(CartObject.UserId, CartObject.RestaurantId)).Count;
 
-               }
+                HttpContext.Session.SetInt32(StaticDetails.ShoppingCartCount, count);
 
-               var count = (await _shoppingBasketService.GetProducts(CartObject.UserId)).Count;
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                var menuItemFromDb = await _dishService.Get(CartObject.DishId);
 
-               HttpContext.Session.SetInt32(SD.ShoppingCartCount, count);
+                ShoppingCart cartObj = new ShoppingCart()
+                {
+                    Dish = menuItemFromDb,
+                    DishId = menuItemFromDb.Id,
+                    RestaurantId= CartObject.RestaurantId,
+                };
 
-               return RedirectToAction("Index");
-           }
-           else
-           {
-
-               var menuItemFromDb = await _dishService.Get(CartObject.DishId);
-
-               ShoppingCart cartObj = new ShoppingCart()
-               {
-                   Dish = menuItemFromDb,
-                   DishId = menuItemFromDb.Id
-               };
-
-               return View(cartObj);
-           }
-       }
-           */
+                return View(cartObj);
+            }
+        }
         public IActionResult Privacy()
         {
             return View();
