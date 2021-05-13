@@ -1,0 +1,91 @@
+﻿@model SmartDelivery.Data.Entities.Order
+
+@{ ViewData["Title"] = "Create";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<br />
+<h2 class="text-success mb-5"> Składanie zamówienia - dane adresowe </h2>
+<br />
+
+<form method="post" asp-action="Create">
+    <div class="font-weight-bold text-info">
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="City" class="col-form-label font-weight-bold text-info">Miasto:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="Street" class="col-form-label font-weight-bold text-info">Ulica:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Street" class="form-control" />
+                <span asp-validation-for="Street" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="ZipCode" class="col-form-label">Kod pocztowy:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ZipCode" type="text" class="form-control">
+                <span asp-validation-for="ZipCode" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="HouseNumber" class="col-form-label">Numer domu:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="HouseNumber" type="text" class="form-control">
+                <span asp-validation-for="HouseNumber" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="FlatNumber" class="col-form-label font-weight-bold text-info">Numer mieszkania:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="FlatNumber" class="form-control" />
+                <span asp-validation-for="FlatNumber" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="PhoneNumber" class="col-form-label font-weight-bold text-info">Numer telefonu:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center ml-0">
+            <div class="col-2">
+                <label asp-for="Comment" class="col-form-label font-weight-bold text-info">Komenatarz:</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Comment" class="form-control" />
+                <span asp-validation-for="Comment" class="text-danger d-flex justify-content-center"></span>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="col-5 offset-2 p-0">
+            <div class="row">
+                <div class="col-6">
+                    <a asp-controller="ShoppingBasket" asp-action="Index" class="btn btn-secondary form-control">Powrót</a>
+                </div>
+                <div class="col-6">
+                    <input type="submit" class="btn btn-success form-control" value="Złóż zamówienie" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
