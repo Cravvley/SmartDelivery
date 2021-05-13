@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SmartDelivery.Data;
 using SmartDelivery.Data.EF;
 using SmartDelivery.Infrastructure.Mappers;
 using SmartDelivery.WEB.Extensions;
