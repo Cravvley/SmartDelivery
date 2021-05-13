@@ -51,7 +51,7 @@ namespace SmartDelivery.Infrastructure.Services
                 throw new ArgumentNullException("Restaurant doesn't exist");
             }
 
-            return await _shoppingBasketRepository.GetShoppingCarts(userId,restaurantId.Value);
+            return await _shoppingBasketRepository.GetShoppingCarts(x => x.UserId == userId && x.RestaurantId == restaurantId);
         }
 
         public async Task<ShoppingCart> GetShoppingCart(int ? productId)
@@ -103,12 +103,15 @@ namespace SmartDelivery.Infrastructure.Services
                 throw new ArgumentNullException("Restaurant doesn't exist");
             }
 
-            var shoppingCarts = await _shoppingBasketRepository.GetShoppingCarts(userId,restaurantId.Value);
+            var shoppingCarts = await _shoppingBasketRepository.GetShoppingCarts(x=>x.UserId==userId&&x.RestaurantId==restaurantId);
 
             await _shoppingBasketRepository.DeleteShoppingCartRange(shoppingCarts);
         }
 
         public async Task<ShoppingCart> GetShoppingCart(Expression<Func<ShoppingCart, bool>> filter)
             => await _shoppingBasketRepository.GetShoppingCart(filter);
+
+        public async Task<List<ShoppingCart>> GetShoppingCarts(Expression<Func<ShoppingCart, bool>> filter)
+             => await _shoppingBasketRepository.GetShoppingCarts(filter);
     }
 }

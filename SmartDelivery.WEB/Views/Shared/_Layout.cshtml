@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http 
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,7 +14,7 @@
     <link rel="stylesheet" href="~/css/style.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-color:whitesmoke">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -21,6 +26,21 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
+                        @if (User.Identity.IsAuthenticated) {
+                            var count = HttpContextAccessor.HttpContext.Session.GetInt32(StaticDetails.ShoppingCartCount);
+                            @if (HttpContextAccessor.HttpContext.Session.GetInt32(@StaticDetails.ShoppingCartCount) != null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="Customer"  asp-controller="ShoppingBasket" asp-action="Index"><i class="fas fa-shopping-basket" style="font-size: 20px">&nbsp; (@count)</i></a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="Customer" asp-controller="ShoppingBasket" asp-action="Index"><i class="fas fa-shopping-basket" style="font-size: 20px">&nbsp;</i></a>
+                                </li>
+                            }
+                        }
                         @if (User.IsInRole(StaticDetails.Admin))
                         {
                             <li class="nav-item">
@@ -39,13 +59,13 @@
                                 <a class="nav-link text-dark" asp-area="Worker" asp-controller="Dish" asp-action="Index">Dishs</a>
                             </li>
                         }
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
-                        </ul>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>

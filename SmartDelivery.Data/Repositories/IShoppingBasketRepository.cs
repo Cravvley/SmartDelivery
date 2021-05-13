@@ -10,7 +10,7 @@ namespace SmartDelivery.Data.Repositories
     {
         Task AddShoppingCart(ShoppingCart shoppingCart);
 
-        Task<List<ShoppingCart>> GetShoppingCarts(string userId,int restaurantId);
+        Task<List<ShoppingCart>> GetShoppingCarts(Expression<Func<ShoppingCart, bool>> filter);
 
         Task<ShoppingCart> GetShoppingCart(int id);
 

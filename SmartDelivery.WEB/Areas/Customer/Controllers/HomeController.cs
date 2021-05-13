@@ -102,12 +102,16 @@ namespace SmartDelivery.WEB.Controllers
             var menuItemFromDb = await _dishService.Get(id);
             var restaurantId = Convert.ToInt32(TempData[StaticDetails.RestaurantMealsId].ToString());
 
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
             ShoppingCart cartObj = new ShoppingCart()
             {
                 Dish = menuItemFromDb,
                 DishId = menuItemFromDb.Id,
                 RestaurantId = restaurantId,
-            };
+                UserId = claim.Value
+        };
 
             return View(cartObj);
         }
@@ -137,7 +141,8 @@ namespace SmartDelivery.WEB.Controllers
                     await _shoppingBasketService.UpdateShoppingCart(shoppingCart);
                 }
 
-                var count = (await _shoppingBasketService.GetShoppingCarts(CartObject.UserId, CartObject.RestaurantId)).Count;
+                var count = (await _shoppingBasketService.GetShoppingCarts(u => u.UserId == CartObject.UserId))
+                                        .GroupBy(r => r.RestaurantId).Count();
 
                 HttpContext.Session.SetInt32(StaticDetails.ShoppingCartCount, count);
 

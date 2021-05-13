@@ -28,6 +28,8 @@ namespace SmartDelivery.Infrastructure.Services
             return userEntity;
         }
 
+        public async Task<User> Get(Expression<Func<User, bool>> filter)
+                => await _userRepository.Get(filter);
         public async Task<IList<User>> GetAll(Expression<Func<User, bool>> filter = null)
                         => await _userRepository.GetAll(filter);
 

@@ -1,0 +1,53 @@
+﻿@model SmartDelivery.Data.Entities.Order
+
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<br />
+<h1 class="text-info text-center">BLIK payment</h1>
+<br />
+
+<div class="row justify-content-center">
+    <input type="hidden" asp-for="Id" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-md-8 col-sm-12">
+        <div class="form-group row col-12 p-0 d-flex justify-content-center">
+            <div class="col-md-4">
+                <label asp-for="TotalGrossPrice" class="text-info font-weight-bold">Order value:</label>
+            </div>
+            <div class="col-md-8">
+                <input asp-for="TotalGrossPrice" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row col-12 p-0 d-flex justify-content-center">
+            <div class="col-md-4">
+                <label asp-for="CreateAt" class="text-info font-weight-bold">
+                    Order creation date:
+                </label>
+            </div>
+            <div class="col-md-8">
+                <input asp-for="CreateAt" readonly class="form-control" />
+            </div>
+        </div>
+    </div>
+</div>
+<form asp-action="Index" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <div class="form-group row col-12 p-0 d-flex justify-content-center">
+        <div class="col-4">
+            <input id="blikCode" name="blikCode" class="form-control" placeholder="BLIK Code" />
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-success form-control">Pay</button>
+        </div>
+    </div>
+</form>
+
+<div>
+    <h1 class="text-secondary">
+        Test blik codes
+    </h1>
+    @foreach (var blik in ViewBag.FakeBliks)
+    {
+<div class="text-secondary">@blik</div>}
+</div>

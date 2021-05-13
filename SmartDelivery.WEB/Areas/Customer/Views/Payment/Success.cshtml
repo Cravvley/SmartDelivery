@@ -1,0 +1,20 @@
+﻿
+@{ ViewData["Title"] = "Success";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="alert alert-success" role="alert">
+    The order has been paid
+</div>
+<p>you will be redirected to the store page in  <span id="counter">5</span> seconds.</p>
+<script type="text/javascript">
+    function countdown() {
+        var i = document.getElementById('counter');
+        if (parseInt(i.innerHTML) <= 0) {
+            location.href = '/Customer/Home';
+        }
+        if (parseInt(i.innerHTML) != 0) {
+            i.innerHTML = parseInt(i.innerHTML) - 1;
+        }
+    }
+    setInterval(function () { countdown(); }, 1000);
+</script>

@@ -26,10 +26,10 @@ namespace SmartDelivery.Infrastructure.Repositories
             await _db.SaveChangesAsync();
         }
 
-        public async Task<List<ShoppingCart>> GetShoppingCarts(string userId,int restaurantId)
+        public async Task<List<ShoppingCart>> GetShoppingCarts(Expression<Func<ShoppingCart, bool>> filter)
             => await _db.ShoppingCarts.Include(x => x.User).Include(s=>s.Restaurant)
                                       .Include(x => x.Dish).ThenInclude(x => x.Category)
-                                       .Where(x => x.UserId == userId&&x.RestaurantId==restaurantId).ToListAsync();
+                                       .Where(filter).ToListAsync();
 
         public async Task<ShoppingCart> GetShoppingCart(int id)
             => await _db.ShoppingCarts.Where(x => x.Id == id).FirstOrDefaultAsync();

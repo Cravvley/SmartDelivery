@@ -1,4 +1,4 @@
-﻿using SmartDelivery.Data.Enums;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,22 +34,10 @@ namespace SmartDelivery.Data.Entities
         [Required]
         public int TotalQuantity { get; set; }
 
-        [Required]
-        public EnumPaymentStatus PaymentStatus { get; set; }
-
-        [Required]
-        public EnumOrderStatus OrderStatus { get; set; }
-
-        public DateTime DeliveryTime { get; set; }
-
         public string Comment { get; set; }
 
         [Required]
         public DateTime CreateAt { get; set; }
-
-        public string Geodata { get; set; }
-
-        public DateTime DateOfIssue { get; set; }
 
         [Required]
         public string UserId { get; set; }

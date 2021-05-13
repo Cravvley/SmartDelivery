@@ -10,6 +10,8 @@ namespace SmartDelivery.Data.Repositories
     {
         Task<User> Get(string id);
 
+        Task<User> Get(Expression<Func<User, bool>> filter);
+
         Task<IList<User>> GetAll(Expression<Func<User, bool>> filter = null);
 
         Task Update(User user);

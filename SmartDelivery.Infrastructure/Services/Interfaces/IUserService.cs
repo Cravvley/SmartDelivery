@@ -10,6 +10,8 @@ namespace SmartDelivery.Infrastructure.Services.Interfaces
     {
         Task<User> Get(string id);
 
+        Task<User> Get(Expression<Func<User, bool>> filter);
+
         Task<bool> Lock(string userId, bool lockUser);
         
         Task Delete(string id);
