@@ -1,77 +1,38 @@
 ﻿@model SmartDelivery.WEB.Models.DishViewModel
-
-@{ ViewData["Title"] = "dish list";
-    Layout = "~/Views/Shared/_Layout.cshtml"; }
-
 <br />
-<form method="get">
-    <div class="">
-        <h1 class="text-secondary">dish list</h1>
-    </div>
-    <br />
-    <partial name="PartialView/_SearchByCategory" />
-    <div class="p-1">
-        @if (Model.Products.Any())
-        {
-            <div style="overflow-x: auto;">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>
+<br />
 
-                            </th>
-                            <th>
-                                Name
-                            </th>
-                            <th>
-                                Price
-                            </th>
-                            <th>
-                                Category
-                            </th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    @foreach (var item in Model.Products)
-                    {
-                        <tr>
-                            <td>
-                                @{ if (item.Image != null)
-                                    {
-                                        var base64 = Convert.ToBase64String(item.Image);
-                                        var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+<div class="row" id="menu-wrapper">
+    <partial name="PartialView/_ThumbnailDishAreaPartial" model=@Model.Products/>
+</div>
 
-                                        <div class="col-3">
-                                            <img src="@imgsrc" height=100 width=100 />
-                                        </div>
-                                    }
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(m => item.Title)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(m => item.GrossPrice)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(m => item.Category.Title)
-                            </td>
-                            <td>
-                                <div class="col-md-6">
-                                    <a asp-action="DishDetails" class="btn btn-success form-control" asp-route-id="@item.Id">
-                                      <i class="fas fa-list-alt"></i>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </table>
-            </div>
-            <partial name="Partialview/_Pagination" model="@Model.PagingInfo" /> }
-        else
-        {
-            <p>There are no dishes yet ...</p>}
-    </div>
-    <br />
-</form>
+@section Scripts{
+    <script>
+
+        $(() => {
+            $(".restaurantInfoModal").click(() => {
+                $('#modalRestaurantInfo').modal('show');
+            });
+        });
+
+        var posts = $('.post');
+
+        (function ($) {
+
+            $("#menu-filters button").click(function () {
+                $("#menu-filters button").removeClass('active btn btn-secondary');
+                $(this).addClass('active btn btn-secondary');
+
+                var selectedFilter = $(this).data("filter");
+
+                $(".menu-restaurant").fadeOut();
+
+                setTimeout(function () {
+                    $(selectedFilter).slideDown();
+                }, 300);
+            });
+
+        })(jQuery);
+
+    </script>
+}

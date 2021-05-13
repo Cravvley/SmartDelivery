@@ -16,58 +16,55 @@
 </head>
 <body style="background-color:whitesmoke">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SmartDelivery</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        @if (User.Identity.IsAuthenticated) {
-                            var count = HttpContextAccessor.HttpContext.Session.GetInt32(StaticDetails.ShoppingCartCount);
-                            @if (HttpContextAccessor.HttpContext.Session.GetInt32(@StaticDetails.ShoppingCartCount) != null)
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-area="Customer"  asp-controller="ShoppingBasket" asp-action="Index"><i class="fas fa-shopping-basket" style="font-size: 20px">&nbsp; (@count)</i></a>
-                                </li>
-                            }
-                            else
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-area="Customer" asp-controller="ShoppingBasket" asp-action="Index"><i class="fas fa-shopping-basket" style="font-size: 20px">&nbsp;</i></a>
-                                </li>
-                            }
-                        }
-                        @if (User.IsInRole(StaticDetails.Admin))
+        <nav style="box-shadow: 0 6px 7px -5px #666;" class="navbar navbar-expand-sm text-muted navbar-toggleable-sm navbar-dark bg-info box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SmartDelivery</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial" />
+                <ul class="navbar-nav flex-grow-1">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        var count = HttpContextAccessor.HttpContext.Session.GetInt32(StaticDetails.ShoppingCartCount);
+                        @if (HttpContextAccessor.HttpContext.Session.GetInt32(@StaticDetails.ShoppingCartCount) != null)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Restaurant" asp-action="Index">Restaurants</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
+                                <a class="nav-link text-light" asp-area="Customer" asp-controller="ShoppingBasket" asp-action="Index"><i class="fas fa-shopping-basket" style="font-size: 20px">&nbsp; (@count)</i></a>
                             </li>
                         }
-                        @if (User.IsInRole(StaticDetails.RestaurantWorker))
+                        else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Worker" asp-controller="Dish" asp-action="Index">Dishs</a>
+                                <a class="nav-link text-light" asp-area="Customer" asp-controller="ShoppingBasket" asp-action="Index"><i class="fas fa-shopping-basket" style="font-size: 20px">&nbsp;</i></a>
                             </li>
                         }
+                    }
+                    @if (User.IsInRole(StaticDetails.Admin))
+                    {
+
+                <li class="nav-item dropdown text-white-50">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin managment
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
+                        <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
+                        <a class="dropdown-item" asp-area="Admin" asp-controller="Restaurant" asp-action="Index">Restaurants</a>
+                        <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
+                    </div>
+                </li>
+                    }
+                    @if (User.IsInRole(StaticDetails.RestaurantWorker))
+                    {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="Worker" asp-controller="Dish" asp-action="Index">Dishs</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+                    }    
+                </ul>
             </div>
+        </div>
         </nav>
     </header>
     <div class="container">
@@ -76,9 +73,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer style=" box-shadow: 0 6px 7px 7px #666;" class="bg-info footer text-white">
         <div class="container">
-            &copy; 2021 - SmartDelivery.WEB - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - SmartDelivery
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

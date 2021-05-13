@@ -5,20 +5,52 @@
 
 <form asp-action="Index" method="get">
     <br />
-    <div class="mt-4 row col-11 col-md-12 offset-1 offset-md-0 container">
-        @foreach (var restaurant in Model.Restaurants)
+    <br />
+    <partial name="PartialView/_SearchByRestaurantAndByCity" />
+    <div class="p-1">
+        @if (Model.Restaurants.Count() > 0)
         {
-            <div class="card col-md-5 col-12 mb-2 offset-md-1 row">
-                <br />
-                <div class="card-body">
-                    <h5 class="card-title text-center text-info ml-5">@restaurant.Name, @restaurant.Address.City </h5>
-                        <a asp-action="Meals" class="btn form-control btn-primary" asp-route-id="@restaurant.Id">Meals</a>
-                </div>
-            </div>
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>
+                            Restaurant name
+                        </th>
+                        <th>
+                            City
+                        </th>
+                        <th>Country</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.Restaurants)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Address.City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Address.Country)
+                        </td>
+         
+
+                        <td style="width:150px">
+
+                            <a class="btn text-white" style="background-color:#45CB85;" asp-action="Meals" asp-route-Id="@item.Id">
+                                <i class="fas fa-list-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <p>No restaurants exist...</p>
         }
     </div>
     <br />
-    <partial name="PartialView/_Pagination" model="@Model.PagingInfo" />
-    <br />
 </form>
-
