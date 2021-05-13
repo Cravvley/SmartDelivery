@@ -8,7 +8,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-
 namespace SmartDelivery.WEB.Areas.Customer.Controllers
 {
     [Area("Customer")]
@@ -61,7 +60,7 @@ namespace SmartDelivery.WEB.Areas.Customer.Controllers
             }
 
             var returnedList = await _shoppingBasketService.GetShoppingCarts(s => s.UserId == claim.Value && s.RestaurantId== id);
-
+            TempData[StaticDetails.RestaurantMealsId] = id;
             return View(returnedList);
         }
 
@@ -77,7 +76,7 @@ namespace SmartDelivery.WEB.Areas.Customer.Controllers
             await _shoppingBasketService.DeleteShoppingCart(id);
 
             HttpContext.Session.SetInt32(StaticDetails.ShoppingCartCount,
-                HttpContext.Session.GetInt32(StaticDetails.ShoppingCartCount).Value - 1);
+            HttpContext.Session.GetInt32(StaticDetails.ShoppingCartCount).Value - 1);
 
             return RedirectToAction(nameof(Index));
         }

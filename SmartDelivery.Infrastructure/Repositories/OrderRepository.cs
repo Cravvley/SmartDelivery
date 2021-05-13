@@ -33,23 +33,16 @@ namespace SmartDelivery.Infrastructure.Repositories
                                 .Where(filter).AsQueryable()
                                 .ToListAsync();
 
-        public async Task<Order> GetOne(Expression<Func<Order, bool>> filter)
+        public async Task<Order> Get(Expression<Func<Order, bool>> filter)
             => await _db.Orders.AsNoTracking().Include(s => s.OrderItems).ThenInclude(x => x.Dish).Include(x => x.User)
                                 .SingleOrDefaultAsync(filter);
 
-        public async Task<Order> GetById(int id)
+        public async Task<Order> Get(int id)
         {
             return await _db.Orders.SingleAsync(x => x.Id == id);
         }
 
-        public async Task Update(Order order)
-        {
-            _db.Orders.Update(order);
-
-            await _db.SaveChangesAsync();
-        }
-
-        public async Task CancelOrder(Order order)
+        public async Task Remove(Order order)
         {
             _db.Orders.Remove(order);
             await _db.SaveChangesAsync();

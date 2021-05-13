@@ -8,6 +8,7 @@
         public const string RestaurantId = "RestaurantId";
         public const string RestaurantWorkersId = "RestaurantWorkersId";
         public const string RestaurantMealsId = "RestaurantMealsId";
+        public const string RestaurantOrderId = "RestaurantOrderId";
         public const string ShoppingCartCount = "CartCount";
     }
 }

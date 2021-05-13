@@ -22,6 +22,8 @@ namespace SmartDelivery.Infrastructure.Repositories
         public async Task<User> Get(string id)
                 => await _db.User.SingleOrDefaultAsync(u => u.Id == id);
 
+        public async Task<User> Get(Expression<Func<User, bool>> filter)
+                => await _db.User.SingleOrDefaultAsync(filter);
         public async Task<IList<User>> GetAll(Expression<Func<User, bool>> filter = null)
             => await _db.User.AsNoTracking().Where(filter).AsQueryable().ToListAsync();
 

@@ -1,10 +1,7 @@
 ﻿using SmartDelivery.Data.Entities;
-using SmartDelivery.Data.Enums;
 using SmartDelivery.Data.Repositories;
-using SmartDelivery.Infrastructure.Models;
 using SmartDelivery.Infrastructure.Services.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,12 +17,7 @@ namespace SmartDelivery.Infrastructure.Services
             _orderRepository = orderRepository;
         }
 
-        public Task CancelOrder(int orderId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<int> Create(Order order, string userId,int restaurantId)
+        public async Task<int> CreateOrder(Order order, string userId, int restaurantId)
         {
             var productsFromBasket = await _shoppingBasketRepository.GetShoppingCarts(s => s.UserId == userId && s.RestaurantId == restaurantId);
             var orderItems = productsFromBasket.Select(x => new OrderItem
@@ -35,8 +27,6 @@ namespace SmartDelivery.Infrastructure.Services
             });
 
             order.CreateAt = DateTime.Now;
-            order.OrderStatus = EnumOrderStatus.New;
-            order.PaymentStatus = EnumPaymentStatus.Waiting;
             order.TotalGrossPrice = productsFromBasket.Sum(x => x.Dish.GrossPrice * x.Count);
             order.TotalQuantity = productsFromBasket.Sum(x => x.Count);
             order.UserId = userId;
@@ -47,34 +37,28 @@ namespace SmartDelivery.Infrastructure.Services
             return order.Id;
         }
 
-        public Task FinishOrder(int orderId, FinishRequest request, int userId)
+        public async Task DeleteOrder(int orderId)
         {
-            throw new NotImplementedException();
+            var orderEntity = await _orderRepository.Get(orderId);
+
+            if(orderEntity is null)
+            {
+                return;
+            }
+
+            await _orderRepository.Remove(orderEntity);
         }
 
-        public Task<Order> GetOne(int orderId)
+        public async Task<Order> GetOrder(int orderId)
         {
-            throw new NotImplementedException();
-        }
+            var orderEntity = await _orderRepository.Get(orderId);
 
-        public Task LoadOrder(int orderId, int userId)
-        {
-            throw new NotImplementedException();
-        }
+            if(orderEntity is null)
+            {
+                throw new ArgumentNullException("Order doesn't exist");
+            }
 
-        public Task LoadOrder(IEnumerable<int> order, int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Pay(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateStatus(int orderId)
-        {
-            throw new NotImplementedException();
+            return orderEntity;
         }
     }
 }

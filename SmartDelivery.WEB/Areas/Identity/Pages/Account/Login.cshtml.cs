@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using SmartDelivery.Infrastructure.Common.StaticDetails;
 using Microsoft.AspNetCore.Http;
+using SmartDelivery.Data.Repositories;
+using System.Security.Claims;
+using SmartDelivery.Infrastructure.Services.Interfaces;
 
 namespace SmartDelivery.WEB.Areas.Identity.Pages.Account
 {
@@ -22,14 +25,20 @@ namespace SmartDelivery.WEB.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IUserService _userService;
+        private readonly IShoppingBasketService _shoppingBasketService;
 
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager,
+            IUserService userService,
+            IShoppingBasketService shoppingBasketService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _userService = userService;
+            _shoppingBasketService = shoppingBasketService;
         }
 
         [BindProperty]
@@ -84,7 +93,13 @@ namespace SmartDelivery.WEB.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    
+                    var user = await _userService.Get(u=>u.Email==Input.Email);
+                    var restaurantShoppingCartCount = (await _shoppingBasketService.
+                                       GetShoppingCarts(p => p.UserId == user.Id)).
+                                       Select(l => l.RestaurantId).ToHashSet().Count;
+
+                    HttpContext.Session.SetInt32(StaticDetails.ShoppingCartCount, restaurantShoppingCartCount);
+
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }

@@ -12,12 +12,10 @@ namespace SmartDelivery.Data.Repositories
 
         Task<IList<Order>> GetAll(Expression<Func<Order, bool>> filter);
 
-        Task<Order> GetOne(Expression<Func<Order, bool>> filter);
+        Task<Order> Get(Expression<Func<Order, bool>> filter);
 
-        Task<Order> GetById(int id);
+        Task<Order> Get(int id);
 
-        Task Update(Order order);
-
-        Task CancelOrder(Order order);
+        Task Remove(Order order);
     }
 }
