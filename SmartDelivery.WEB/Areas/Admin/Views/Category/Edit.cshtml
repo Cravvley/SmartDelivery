@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 <br />
-<h1 class="text-warning mb-5 text-warning">Category @Model.Title edit</h1>
 <br />
 
 <form method="post" asp-action="Edit">
@@ -25,11 +24,31 @@
     </div>
     <div class="d-flex justify-content-center">
         <div class="col-5 offset-2">
-            <partial name="PartialView/_EditAndBackToListButton" model="Model.Id" />
+            @if (@Model.ParentId is null)
+            {
+                <div class="row">
+                    <div class="col-6">
+                        <input type="submit" class="btn btn-warning form-control" asp-route-id="@Model.Id" value="Update" />
+                    </div>
+                    <div class="col-6">
+                        <a asp-action="Index" class="btn btn-secondary form-control">Back to list</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-6">
+                        <input type="submit" class="btn btn-warning form-control" asp-route-id="@Model.Id" value="Update" />
+                    </div>
+                    <div class="col-6">
+                        <a asp-action="Details" asp-route-id="@Model.ParentId" class="btn btn-secondary form-control">Back</a>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </form>
-
 
 @section Scripts{
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -6,9 +6,6 @@
 }
 
 <br />
-<div class="col-12 text-center">
-    <h1 class="text-secondary"> restaurants basket card list</h1>
-</div>
 
 <form method="get">
     <br />
@@ -39,10 +36,13 @@
                 @Html.DisplayFor(m => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(m => item.Id)
+                @Html.DisplayFor(m => item.Address.City)
             </td>
             <td>
-                <a class="btn text-white" style="background-color:#45CB85;" asp-action="UserShoppingCartsFromRestaurant"  asp-route-Id="@item.Id">
+                @Html.DisplayFor(m => item.Address.ZipCode)
+            </td>
+            <td>
+                <a class="btn text-white" style="background-color:#45CB85;" asp-action="UserShoppingCartsFromRestaurant" asp-route-Id="@item.Id">
                     <i class="fas fa-list-alt"></i>
                 </a>
             </td>

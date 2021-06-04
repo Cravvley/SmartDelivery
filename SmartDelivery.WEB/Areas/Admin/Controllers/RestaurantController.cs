@@ -16,7 +16,7 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
     {
         private readonly IRestaurantService _restaurantService;
 
-        private const int PageSize = 5;
+        private const int PageSize = 8;
 
         public RestaurantController(IRestaurantService restaurantService)
         {

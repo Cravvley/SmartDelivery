@@ -7,11 +7,7 @@
 
 <br />
 <br />
-<div class="row">
-    <div class="col-12 text-center">
-        <h1 class="text-secondary">Workers list</h1>
-    </div>
-</div>
+
 <br />
 <form method="get">
     <partial name="PartialView/_SearchByEmail" />
@@ -44,7 +40,7 @@
                             @Html.DisplayFor(m => item.Email)
                         </td>
                         <td>
-                            @Html.DisplayFor(m => item.LastModificationAt)
+                            @Html.DisplayFor(m => item.PhoneNumber)
                         </td>
                         <td></td>
                     </tr>
@@ -54,7 +50,7 @@
         }
         else
         {
-            <p>No worker exists...</p>
+            <p>workers don't exist......</p>
         }
     </div>
 </form>

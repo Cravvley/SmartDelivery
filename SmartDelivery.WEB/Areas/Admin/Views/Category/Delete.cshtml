@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 <br />
-<h1 class="text-danger mb-5 text-warning">Delete @Model.Title category</h1>
 <br />
 
 <form method="post" asp-action="Delete">
@@ -18,7 +17,26 @@
     </div>
     <div class="d-flex justify-content-center">
         <div class="col-5 mt-3 offset-2">
-            <partial name="PartialView/_DeleteAndBackToListButton" model="Model.Id" />
+            <div class="row">
+                @if (@Model.ParentId is null)
+                {
+                    <div class="col-6">
+                        <input type="submit" class="btn btn-danger form-control" asp-route-id="@Model.Id" value="Delete" />
+                    </div>
+                    <div class="col-6">
+                        <a asp-action="Index" class="btn btn-secondary form-control">Back to list</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-6">
+                        <input type="submit" class="btn btn-danger form-control" asp-route-id="@Model.Id" value="Delete" />
+                    </div>
+                    <div class="col-6">
+                        <a asp-action="Details" asp-route-id="@Model.ParentId" class="btn btn-secondary form-control">Back</a>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 </form>

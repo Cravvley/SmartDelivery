@@ -14,7 +14,7 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
     {
         private readonly IUserService _userService;
 
-        private const int PageSize = 10;
+        private const int PageSize = 8;
 
         public UserController(IUserService userService)
         {

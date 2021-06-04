@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using SmartDelivery.Infrastructure.Common.StaticDetails;
 
 namespace SmartDelivery.WEB.Areas.Identity.Pages.Account
 {
@@ -30,6 +31,10 @@ namespace SmartDelivery.WEB.Areas.Identity.Pages.Account
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
+            TempData[StaticDetails.RestaurantId] = null;
+            TempData[StaticDetails.RestaurantMealsId] = null;
+            TempData[StaticDetails.RestaurantOrderId] = null;
+            TempData[StaticDetails.RestaurantWorkersId] = null;
             if (returnUrl != null)
             {
                 return LocalRedirect(returnUrl);

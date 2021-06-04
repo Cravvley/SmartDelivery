@@ -1,10 +1,12 @@
-﻿﻿ /*!
+﻿/*!
  * jQuery ComboTree Plugin 
  * Author:  Erhan FIRAT
  * Mail:    erhanfirat@gmail.com
  * Licensed under the MIT license
  * Version: 1.2.1
  */
+
+
 :root {
     --ct-bg: #fff;
     --ct-btn-hover: #e8e8e8;

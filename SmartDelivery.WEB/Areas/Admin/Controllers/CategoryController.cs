@@ -59,7 +59,7 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
             category.Id = 0;
             await _categoryService.Create(category);
 
-            if (category.ParentId == null)
+            if (category.ParentId is null)
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -97,7 +97,7 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
 
             await _categoryService.Update(category);
 
-            if (category.ParentId == null)
+            if (category.ParentId is null)
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -114,9 +114,18 @@ namespace SmartDelivery.WEB.Areas.Admin.Controllers
         [HttpPost, ActionName("Delete"), ValidateAntiForgeryToken,Authorize(Roles = StaticDetails.Admin)]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var parentId = (await _categoryService.Get(id)).ParentId;
+
             await _categoryService.Delete(id);
 
-            return RedirectToAction(nameof(Index));
+            if (parentId is null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return RedirectToAction("Details", new { id = parentId });
+            }
         }
 
         [Authorize]

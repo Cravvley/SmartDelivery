@@ -5,13 +5,12 @@
 
 <br />
 <form method="get">
-    <div class="">
-        <h1 class="text-secondary">dish list</h1>
-    </div>
+
     <br />
     <div class="p-1 pb-0">
         <partial name="Partialview/_CreateButtonPartial" />
     </div>
+    <br />
     <partial name="PartialView/_SearchByCategory" />
     <div class="p-1">
         @if (Model.Products.Any())
@@ -70,7 +69,7 @@
             <partial name="Partialview/_Pagination" model="@Model.PagingInfo" /> }
         else
         {
-        <p>There are no dishes yet ...</p>}
+    <p>dishes don't exist ...</p>}
     </div>
     <br />
 </form>
