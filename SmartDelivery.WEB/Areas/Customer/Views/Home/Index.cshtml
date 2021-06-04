@@ -10,43 +10,29 @@
     <div class="p-1">
         @if (Model.Restaurants.Count() > 0)
         {
-            <table class="table">
-                <thead class="thead-light">
-                    <tr>
-                        <th>
-                            Restaurant name
-                        </th>
-                        <th>
-                            City
-                        </th>
-                        <th>Postal Code</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                @foreach (var item in Model.Restaurants)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(m => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.City)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.PostalCode)
-                        </td>
+        <div class="row">
+            @foreach (var item in Model.Restaurants)
+            {
 
+                <div class="col-md-4">
+                    <div class="card mb-2">
+                        <img src="~/imgs/restaurant.jpg" alt="restaurant" class="card-img-top" />
+                        <div class="card-body">
+                            <h3>@item.Name</h3>
+                            <span>@item.City</span>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn-block text-white border-0 rounded" style="background-color:#45CB85;" asp-action="Meals" asp-route-Id="@item.Id">
+                                <span>Check our offer</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-                        <td style="width:150px">
-
-                            <a class="btn text-white" style="background-color:#45CB85;" asp-action="Meals" asp-route-Id="@item.Id">
-                                <i class="fas fa-list-alt"></i>
-                            </a>
-                        </td>
-                    </tr>
-                }
-            </table>
-            <partial name="PartialView/_Pagination" model="@Model.PagingInfo" />
+            }
+        </div>
+            <br />
+                <partial name="PartialView/_Pagination" model="@Model.PagingInfo" />
         }
         else
         {
