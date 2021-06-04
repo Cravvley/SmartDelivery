@@ -19,7 +19,7 @@
                         <th>
                             City
                         </th>
-                        <th>Country</th>
+                        <th>Postal Code</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -30,12 +30,12 @@
                             @Html.DisplayFor(m => item.Name)
                         </td>
                         <td>
-                            @Html.DisplayFor(m => item.Address.City)
+                            @Html.DisplayFor(m => item.City)
                         </td>
                         <td>
-                            @Html.DisplayFor(m => item.Address.Country)
+                            @Html.DisplayFor(m => item.PostalCode)
                         </td>
-         
+
 
                         <td style="width:150px">
 
@@ -46,6 +46,7 @@
                     </tr>
                 }
             </table>
+            <partial name="PartialView/_Pagination" model="@Model.PagingInfo" />
         }
         else
         {

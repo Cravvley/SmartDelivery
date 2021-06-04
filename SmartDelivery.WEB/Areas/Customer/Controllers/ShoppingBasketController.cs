@@ -83,8 +83,6 @@ namespace SmartDelivery.WEB.Areas.Customer.Controllers
 
             HttpContext.Session.SetInt32(StaticDetails.ShoppingCartCount, count);
 
-            //return RedirectToAction(nameof(Index));
-
             return RedirectToAction("UserShoppingCartsFromRestaurant", new { id = Convert.ToInt32(TempData[StaticDetails.RestaurantMealsId].ToString()) });
         }
 

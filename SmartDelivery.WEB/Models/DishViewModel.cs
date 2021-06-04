@@ -8,6 +8,8 @@ namespace SmartDelivery.WEB.Models
     {
         public IList<Dish> Products { get; set; }
 
+        public IList<Category> Categories { get; set; }
+
         public PagingInfo PagingInfo { get; set; }
     }
 }

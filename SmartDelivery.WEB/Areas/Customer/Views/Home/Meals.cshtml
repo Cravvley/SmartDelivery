@@ -2,37 +2,20 @@
 <br />
 <br />
 
-<div class="row" id="menu-wrapper">
-    <partial name="PartialView/_ThumbnailDishAreaPartial" model=@Model.Products/>
-</div>
 
-@section Scripts{
-    <script>
+<br />
+<br/>
 
-        $(() => {
-            $(".restaurantInfoModal").click(() => {
-                $('#modalRestaurantInfo').modal('show');
-            });
-        });
+<form method="get">
+    <partial name="PartialView/_SearchByCategory" />
+    <div class="row" id="menu-wrapper">
+        <partial name="PartialView/_ThumbnailDishAreaPartial" model=@Model.Products />
+    </div>
+    <partial name="PartialView/_Pagination" model="@Model.PagingInfo" />
+    <br />
+    <div class="col-4 p-0">
+        <a asp-action="Index" class="btn btn-success form-control">Back to list</a>
+    </div> 
 
-        var posts = $('.post');
-
-        (function ($) {
-
-            $("#menu-filters button").click(function () {
-                $("#menu-filters button").removeClass('active btn btn-secondary');
-                $(this).addClass('active btn btn-secondary');
-
-                var selectedFilter = $(this).data("filter");
-
-                $(".menu-restaurant").fadeOut();
-
-                setTimeout(function () {
-                    $(selectedFilter).slideDown();
-                }, 300);
-            });
-
-        })(jQuery);
-
-    </script>
-}
+</form>
+    

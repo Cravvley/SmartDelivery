@@ -40,11 +40,11 @@
                         <label class="text-primary" style="font-size:21px;color:maroon">@item.Title</label>
                     </div>
                     <div class="col-4 text-right" style="color:maroon">
-                        <h4>@item.GrossPrice zł</h4>
+                        <h4>@item.GrossPrice $</h4>
                     </div>
                 </div>
                 <div class="row col-12 text-justify d-none d-md-block">
-                    <p>@Html.Raw(item.Description)</p>
+                    <p>@Html.Raw(item.Category.Title)</p>
                 </div>
             </div>
         </div>
