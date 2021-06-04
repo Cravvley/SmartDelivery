@@ -22,7 +22,7 @@ namespace SmartDelivery.WEB.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IShoppingBasketService _shoppingBasketService;
 
-        private const int PageSize = 9;
+        private const int PageSize = 8;
         public HomeController(IDishService productService, IRestaurantService shopService,
             ICategoryService categoryService, IShoppingBasketService shoppingBasketService)
         {
@@ -32,13 +32,13 @@ namespace SmartDelivery.WEB.Controllers
             _shoppingBasketService = shoppingBasketService;
         }
 
-        public async Task<IActionResult> Index(int productPage = 1)
+        public async Task<IActionResult> Index(int productPage = 1, string searchByRestaurant = null, string searchByCity = null)
         {
-            var restaurants = await _restaurantService.GetAllDetails();
+   
+            var (restaurants, restaurantsCount) = await _restaurantService.GetFiltered(searchByRestaurant, searchByCity, PageSize, productPage);
             var homeVM = new HomeViewModel()
             {
-                Restaurants = restaurants.OrderBy(p => p.Id).Skip((productPage - 1) *
-                 PageSize).Take(PageSize).ToList(),
+                Restaurants = restaurants
             };
 
             const string Url = "/Customer/Home/Index?productPage=:";
@@ -47,7 +47,7 @@ namespace SmartDelivery.WEB.Controllers
             {
                 CurrentPage = productPage,
                 ItemsPerPage = PageSize,
-                TotalItem = restaurants.Count,
+                TotalItem = restaurantsCount,
                 UrlParam = Url
             };
 
@@ -79,6 +79,7 @@ namespace SmartDelivery.WEB.Controllers
             {
                 Products = meals.OrderBy(p => p.Title).Skip((productPage - 1) *
                 PageSize).Take(PageSize).ToList(),
+                Categories = await _categoryService.GetAll()
             };
 
             string Url = $"/Customer/Home/Meals/{TempData[StaticDetails.RestaurantMealsId]}?productPage=:";
@@ -146,7 +147,7 @@ namespace SmartDelivery.WEB.Controllers
 
                 HttpContext.Session.SetInt32(StaticDetails.ShoppingCartCount, count);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Meals",new { id = CartObject.RestaurantId });
             }
             else
             {

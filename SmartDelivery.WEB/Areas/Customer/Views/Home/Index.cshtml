@@ -5,20 +5,39 @@
 
 <form asp-action="Index" method="get">
     <br />
-    <div class="mt-4 row col-11 col-md-12 offset-1 offset-md-0 container">
-        @foreach (var restaurant in Model.Restaurants)
+    <br />
+    <partial name="PartialView/_SearchByRestaurantAndByCity" />
+    <div class="p-1">
+        @if (Model.Restaurants.Count() > 0)
         {
-            <div class="card col-md-5 col-12 mb-2 offset-md-1 row">
-                <br />
-                <div class="card-body">
-                    <h5 class="card-title text-center text-info ml-5">@restaurant.Name, @restaurant.Address.City </h5>
-                        <a asp-action="Meals" class="btn form-control btn-primary" asp-route-id="@restaurant.Id">Meals</a>
+        <div class="row">
+            @foreach (var item in Model.Restaurants)
+            {
+
+                <div class="col-md-4">
+                    <div class="card mb-2">
+                        <img src="~/imgs/restaurant.jpg" alt="restaurant" class="card-img-top" />
+                        <div class="card-body">
+                            <h3>@item.Name</h3>
+                            <span>@item.City</span>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn-block text-white border-0 rounded" style="background-color:#45CB85;" asp-action="Meals" asp-route-Id="@item.Id">
+                                <span>Check our offer</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+            }
+        </div>
+            <br />
+                <partial name="PartialView/_Pagination" model="@Model.PagingInfo" />
+        }
+        else
+        {
+            <p>No restaurants exist...</p>
         }
     </div>
     <br />
-    <partial name="PartialView/_Pagination" model="@Model.PagingInfo" />
-    <br />
 </form>
-

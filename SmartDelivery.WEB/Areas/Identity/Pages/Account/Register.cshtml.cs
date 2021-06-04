@@ -28,6 +28,7 @@ namespace SmartDelivery.WEB.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IRestaurantService _restaurantService;
+        private readonly IUserService _userService;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -35,7 +36,8 @@ namespace SmartDelivery.WEB.Areas.Identity.Pages.Account
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             RoleManager<IdentityRole> roleManager,
-            IRestaurantService restaurantService)
+            IRestaurantService restaurantService,
+            IUserService userService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -43,6 +45,7 @@ namespace SmartDelivery.WEB.Areas.Identity.Pages.Account
             _emailSender = emailSender;
             _roleManager = roleManager;
             _restaurantService = restaurantService;
+            _userService = userService;
         }
 
         [BindProperty]
@@ -100,7 +103,7 @@ namespace SmartDelivery.WEB.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    if(!await _roleManager.RoleExistsAsync(StaticDetails.Admin))
+                    if (!await _roleManager.RoleExistsAsync(StaticDetails.Admin))
                     {
                         await _roleManager.CreateAsync(new IdentityRole(StaticDetails.Admin));
                     }
@@ -115,13 +118,23 @@ namespace SmartDelivery.WEB.Areas.Identity.Pages.Account
 
                     if (TempData[StaticDetails.RestaurantId] is null)
                     {
-                        await _userManager.AddToRoleAsync(user, StaticDetails.DefaultUser);
+                        var userCount = (await _userService.GetAll(p => true)).Count();
+
+                        if (userCount <= 1)
+                        {
+                            await _userManager.AddToRoleAsync(user, StaticDetails.Admin);
+                        }
+                        else
+                        {
+                            await _userManager.AddToRoleAsync(user, StaticDetails.DefaultUser);
+                        }
                     }
                     else
                     {
                         await _userManager.AddToRoleAsync(user, StaticDetails.RestaurantWorker);
                         int restaurantId = Convert.ToInt32(TempData[StaticDetails.RestaurantId].ToString());
                         await _restaurantService.AddWorker(restaurantId, user);
+                        
                     }
                     
                     _logger.LogInformation("User created a new account with password.");
@@ -144,7 +157,13 @@ namespace SmartDelivery.WEB.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                       // await _signInManager.SignInAsync(user, isPersistent: false);
+                        // await _signInManager.SignInAsync(user, isPersistent: false);
+                   
+                        if (!(TempData[StaticDetails.RestaurantId] is null))
+                        {
+                            return RedirectToAction("Details", "Restaurant",new { id = Convert.ToInt32(TempData[StaticDetails.RestaurantId].ToString()) ,Area=StaticDetails.Admin});
+                        }
+                            
                         return LocalRedirect(returnUrl);
                     }
                 }

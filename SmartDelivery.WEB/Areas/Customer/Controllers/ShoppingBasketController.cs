@@ -75,10 +75,15 @@ namespace SmartDelivery.WEB.Areas.Customer.Controllers
 
             await _shoppingBasketService.DeleteShoppingCart(id);
 
-            HttpContext.Session.SetInt32(StaticDetails.ShoppingCartCount,
-            HttpContext.Session.GetInt32(StaticDetails.ShoppingCartCount).Value - 1);
+            var claims = (ClaimsIdentity)User.Identity;
+            Claim claim = claims.FindFirst(ClaimTypes.NameIdentifier);
 
-            return RedirectToAction(nameof(Index));
+            var count = (await _shoppingBasketService.GetShoppingCarts(u => u.UserId == claim.Value))
+                                        .GroupBy(r => r.RestaurantId).Count();
+
+            HttpContext.Session.SetInt32(StaticDetails.ShoppingCartCount, count);
+
+            return RedirectToAction("UserShoppingCartsFromRestaurant", new { id = Convert.ToInt32(TempData[StaticDetails.RestaurantMealsId].ToString()) });
         }
 
         [HttpGet]
@@ -97,12 +102,15 @@ namespace SmartDelivery.WEB.Areas.Customer.Controllers
             }
             else if (submit == "minus")
             {
-                shoppingCart.Count--;
+                if (shoppingCart.Count > 1)
+                {
+                    shoppingCart.Count--;
+                }   
             }
 
             await _shoppingBasketService.UpdateShoppingCart(shoppingCart);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("UserShoppingCartsFromRestaurant", new { id=Convert.ToInt32(TempData[StaticDetails.RestaurantMealsId].ToString())});
         }
     }
 }
