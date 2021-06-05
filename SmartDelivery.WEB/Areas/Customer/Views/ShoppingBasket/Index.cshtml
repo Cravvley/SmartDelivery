@@ -13,42 +13,27 @@
     <div class="p-1">
         @if (Model.Count() > 0)
         {
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th>
-                        Restaurant name
-                    </th>
-                    <th>
-                        City
-                    </th>
-                    <th>
-                        Postal code
-                    </th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
+        <div class="row">
             @foreach (var item in Model)
-                {
-        <tr>
-            <td>
-                @Html.DisplayFor(m => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(m => item.Address.City)
-            </td>
-            <td>
-                @Html.DisplayFor(m => item.Address.ZipCode)
-            </td>
-            <td>
-                <a class="btn text-white" style="background-color:#45CB85;" asp-action="UserShoppingCartsFromRestaurant" asp-route-Id="@item.Id">
-                    <i class="fas fa-list-alt"></i>
-                </a>
-            </td>
-        </tr>
-                }
-        </table>
+            {
+
+                <div class="col-md-4">
+                    <div class="card mb-2">
+                        <img src="~/imgs/restaurant.jpg" alt="restaurant" class="card-img-top" />
+                        <div class="card-body">
+                            <h3>@item.Name</h3>
+                            <span>@item.Address.City</span>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn-block text-white border-0 rounded" style="background-color:#45CB85;" asp-action="UserShoppingCartsFromRestaurant" asp-route-Id="@item.Id">
+                                <span>Check your order</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
         }
         else
         {
