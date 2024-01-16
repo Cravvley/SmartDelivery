@@ -1,175 +1,178 @@
-Smart Delivery ![ref1]**
-*Koncept aplikacji!
+Smart Delivery 
 
-W dobie aktualnie występującej pandemii dostęp do stacjonarnych usług, do których szary Kowalski był przyzwyczajony, został utrudniony. Naprzeciw temu problemowi proponuję stworzenie aplikacji do zarządzania zamawiania żywności z restauracji. Celem tej aplikacji będzie udostępnienie użytkownikowi interfejsu, poprzez który będzie on mógł zamówić sobie dowolny produkt z dowolnej restauracji poprzez opisywaną aplikacje, która udostępnia dowóz towaru w sposób prosty i intuicyjny. Projekt będzie implementowany przy pomocy technologii Microsoftu, a mianowicie przy zastosowaniu frameworka .net core MVC, pozwoli to w szybki sposób uzyskać zadowalający efekt i zapewni wygodę pracy programistą biorącym czynny udział w projekcie. Aplikacja będzie oparta m.in. o architekturę n-layer, back-end będzie tworzony przy pomocy języka c# a front w oparciu o biblioteke css Bootstrap.
+Brief
+The application was created to pass the IT project management course at Częstochowa University of Technology
 
-Zastosowane technologie
+![ref1]
+
+App concept!
+
+In the era of the current pandemic, access to stationary services to which the gray Smith was accustomed has been hampered. Faced with this problem, I propose to create an application to manage the ordering of food from restaurants. The purpose of this application will be to provide the user with an interface through which he will be able to order for himself any product from any restaurant through the described application, which makes the delivery of goods available in a simple and intuitive way. The project will be implemented with the help of Microsoft technology, namely using the .net core MVC framework, this will allow to quickly achieve a satisfactory result and provide convenience for the programmers taking an active part in the project. Among other things, the application will be based on n-layer architecture, the back-end will be created using c# language and the front-end will be based on Bootstrap css library.
+
+Technologies used
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.005.png)
 
-HTML (ang. HyperText Markup Language) – hipertekstowy język znaczników jest jedną z najpowszechniej wykorzystywanych technologii internetu. HTML definiuje szkielet warstwy prezentacyjnej udostępnionej użytkownikowi aplikacji internetowej. HTML udostępnia wiele przydatnych znaczników jak m.in. hiperłącza pozwalające na odwołanie do innych plików HTML, listy, nagłówki, paragrafy czy kontenery na zdjęcia. HTML pozwala na określenie wyglądu strony, jest to jednak praktyka niezalecana, ponieważ za wygląd pliku HTML powinny odpowiadać kaskadowe arkusze stylów. Praktycznie każda aplikacja internetowa po stronie klienta, którym jest przeglądarka internetowa, ma strukturę opartą właśnie na HTML.
+HTML (HyperText Markup Language), a hypertext markup language, is one of the most widely used technologies of the Internet. HTML defines the skeleton of the presentation layer provided to the user of a web application. HTML provides a lot of useful markup such as hyperlinks that allow reference to other HTML files, lists, headings, paragraphs and image containers, among others. HTML allows you to specify the appearance of a page, but this is a practice that is not recommended, since cascading style sheets should be responsible for the appearance of an HTML file. Virtually every web application on the client side, which is the web browser, has a structure just based on HTML.
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.006.png)
 
-CSS (ang. Cascading Style Sheets) – kaskadowe arkusze stylów są następną z przewodnich technologii w internecie. CSS odpowiada za wygląd strony internetowej, pozwala na dostosowanie wyglądu strony w taki sposób, aby spełniała ona aktualne normy estetyczne potencjalnego odbiorcy aplikacji. W nowoczesnym procesie tworzenia aplikacji internetowych CSS jest technologią wręcz niezbędna, twórca aplikacji internetowej może się zdecydować na rezygnację z użycia CSS podczas procesu tworzenia warstwy prezentacyjnej aplikacji po stronie klienta, jakim jest przeglądarka, jednak bez zasadnego uargumentowania takiego wyboru, prawdopodobnie aplikacja okaże się porażką poprzez wzgląd na nieprzystępny dla zwykłego użytkownika interfejs. W przeciwieństwie do CSS twórca aplikacji internetowej nie może zrezygnować ze stosowania HTML .
+CSS (Cascading Style Sheets) is another of the guiding technologies of the Internet. CSS is responsible for the appearance of a website, it allows you to customize the appearance of your website to meet the current aesthetic standards of a potential application viewer. In the modern web application development process, CSS is an almost indispensable technology, a web application developer may choose to forgo the use of CSS during the process of creating the presentation layer of the application on the client side, which is the browser, but without a legitimate rationale for such a choice, it is likely that the application will be a failure for the sake of an inaccessible interface for the ordinary user. Unlike CSS, a web application developer cannot opt out of using HTML.
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.007.png)
 
-JavaScript jest niewątpliwie technologią, która przy aktualnych normach tworzenia wygodnych, nowoczesnych i przyjaznych użytkownikowi interfejsów aplikacji internetowych jest podstawowym wyborem każdego twórcy. JavaScript jest uzupełnieniem możliwości, jakie udostępniają nam HTML i CSS, w przeciwieństwie do tych technologii, JavaScript jest pełnoprawnym językiem programowania, który jest językiem wieloparadygmatowym. JavaScript umożliwia pisanie kodu przy zastosowaniu m.in. paradygmatu obiektowego, funkcyjnego czy imperatywnego. JavaScript odpowiada za logikę wykonywaną po stronie przeglądarki. Od początków rozwoju internetu język programowania JavaScript był podstawowym i zasadniczo jedynym wyborem przy tworzeniu logiki widoku aplikacji internetowych, co doprowadziło do sytuacji w której, znajomość JavaScript jest podstawą dla każdego, kto chce uczestniczyć w procesie rozwoju internetu.
+JavaScript is undoubtedly a technology that, by current standards for creating convenient, modern and user-friendly web application interfaces, is the primary choice of every developer. JavaScript is a complement to the possibilities that HTML and CSS provide us, unlike these technologies, JavaScript is a full-fledged programming language, which is a multi-paradigm language. JavaScript allows you to write code using object-oriented, functional or imperative paradigms, among others. JavaScript is responsible for the logic executed on the browser side. Since the early days of the Internet's development, the JavaScript programming language has been the primary and essentially the only choice for creating view logic for Web applications, which has led to a situation where, knowledge of JavaScript is fundamental for anyone who wants to participate in the Internet development process.
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.008.png)
 
-JQuery jest to lekka biblioteka JavaScript, która ma na celu ułatwienie wykorzystywania JavaScript, poprzez udostępnienie rozwiązań, które w prostszy sposób niż w JavaScript pozwalają na m.in. manipulacje drzewem DOM, tworzenie animacji, obsługę AJAX czy dynamiczne zmiany na stronie. Niestety w porównaniu do JavaScript, JQuery wypada gorzej pod względem optymalizacji, używając tej technologii, tracimy na wydajności względem pisania kodu w czystym JavaScript, spowodowane jest to nadmiarowym kodem, który jest udostępniony przez bibliotekę.
+JQuery is a lightweight JavaScript library that aims to make JavaScript easier to use, by providing solutions that allow for DOM tree manipulation, animation creation, AJAX support or dynamic changes to a page, among other things, in a simpler way than in JavaScript. Unfortunately, compared to JavaScript, jQuery performs worse in terms of optimization, using this technology, we lose performance relative to writing code in pure JavaScript, this is due to the redundant code that is provided by the library.
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.009.png)
 
-Bootstrap jest biblioteka CSS udostępniającą użytkownikowi tej biblioteki gotowe klasy i rozwiązania. Bootstrap został stworzony przez programistów platformy Twitter w celu ułatwienia tworzenia interfejsów użytkownika przez programistów, wydawany jest na licencji MIT, co daje użytkownikom nieograniczone prawo do użytkowania Bootstrap. W połączeniu z JQuery użytkownik tych technologii jest w stanie szybko i w prosty sposób stworzyć przyjemną dla oka oraz estetyczną warstwę wizualną aplikacji. Minusem używania Bootstap jest niewątpliwie spadek wydajnościowy w porównaniu do własnoręcznie pisanych arkuszy stylów, sytuacja ta spowodowana jest tak jak w przypadku JQuery tym, że nie jesteśmy w stanie wykorzystać wszystkich rozwiązań dostarczonych przez bibliotekę, co przekłada się niewątpliwie na nadmiarowe oraz zbędne mechanizmy, których nie potrzebujemy. Używając Bootstrap, warto mieć na uwadze spadek oryginalności wyglądu strony oraz wydajności aplikacji.
+Bootstrap is a CSS library providing the user of this library with ready-made classes and solutions. Bootstrap was created by the developers of the Twitter platform to facilitate the creation of user interfaces by developers, it is released under the MIT license, which gives users unlimited rights to use Bootstrap. In combination with JQuery, a user of these technologies is able to quickly and easily create an eye-pleasing and aesthetically pleasing visual layer of an application. The downside of using Bootstap is undoubtedly a decrease in performance compared to self-written style sheets, this situation is caused, as in the case of JQuery, by the fact that we are not able to use all the solutions provided by the library, which undoubtedly translates into redundant and unnecessary mechanisms that we do not need. When using Bootstrap, it is worth bearing in mind the decrease in the originality of the appearance of the site and the performance of the application.
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.010.png)
 
-C# jest wieloparadygmatowym językiem programowania. C# jest odpowiedzią Microsoft na rosnącą popularność języka programowania Java. Programy pisane w C# są kompilowane do Common Intermediate Language, języka, który jest językiem bardzo bliskim językowi maszynowemu. Głównym paradygmatem w C# jest paradygmat obiektowy. Początkowo programy pisane w C# były jednoplatformowe, Microsoft ograniczył zasięg tego języka zasadniczo wyłącznie do swoich tworów takich jak Windows, jednak aktualnie C# jest już językiem wieloplatformowym. Microsoft podjął się dodania do języka wielu nowych rozwiązań z m.in. paradygmatu funkcyjnego co w połączeniu z przyjazną składnią, zniesieniem ograniczenia języka co do platformy, na której może być użytkowany oraz wygodnym darmowym środowiskiem VisualStudio, doprowadziło do sytuacji, w której C# jest aktualnie jednym z najpopularniejszych języków programowania na rynku komercyjnym. C# wchodzi w skład platformy .Net.
+C# is a multi-paradigm programming language. C# is Microsoft's answer to the growing popularity of the Java programming language. Programs written in C# are compiled into Common Intermediate Language, a language that is very close to machine language. The main paradigm in C# is the object-oriented paradigm. Initially, programs written in C# were single-platform, with Microsoft limiting the scope of the language essentially only to its creations such as Windows, but C# is now a multi-platform language. Microsoft has taken it upon itself to add many new features to the language from, among other things, the function paradigm which, combined with friendly syntax, the lifting of the language's restriction on the platform on which it can be used and the convenient free VisualStudio environment, has led to a situation where C# is currently one of the most popular programming languages on the commercial market. C# is part of the .Net platform.
 
-ASP.NET Core MVC jest wieloplatformową platformą do tworzenia aplikacji internetowych stworzoną![](Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.011.png) przez firmę Microsoft. Założeniem ASP.NET Core MVC jest ułatwienie pracy programiście poprzez udostępnienie mu gotowych rozwiązań oraz struktury, na której może budować aplikacje. ASP.NET Core MVC opiera się o wzorzec MVC (ang. Model-View- Controller). Celem wzorca MVC jest rozdzielenie aplikacji na warstwy takie jak modele, widoki oraz kontrolery. Widoki odpowiadają za warstwę prezentacji, jest to warstwa, z którą pracuje użytkownik aplikacji, w opisywanej platformie w warstwie widoku powszechne jest wykorzystywanie widoków opartych na silniku Razor. Warstwa modelu w MVC odpowiada za reprezentację stanu aplikacji oraz za logikę biznesową. Warstwa kontrolera ma na celu obsługiwać żądania, wykonywać operację na modelu domeny, a także decydować o tym, które widoki zostaną udostępnione użytkownikowi aplikacji, kontroler jest więc warstwą pośrednią pomiędzy modelem a widokiem.
+![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.011.png) 
+ASP.NET Core MVC is a cross-platform web application development platform developed by Microsoft. The premise of ASP.NET Core MVC is to make the developer's job easier by providing him with a ready-made solution and a structure on which he can build applications. ASP.NET Core MVC is based on the Model-View- Controller (MVC) pattern. The purpose of the MVC pattern is to separate applications into layers such as models, views and controllers. Views are responsible for the presentation layer, this is the layer that the application user works with, in the described platform in the view layer it is common to use views based on the Razor engine. The model layer in MVC is responsible for the representation of the application state and business logic. The controller layer is intended to handle requests, perform operations on the domain model, and decide which views will be made available to the application user, so the controller is an intermediate layer between the model and the view.
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.012.png)
 
-SQL (ang. Structured Query Language) jest strukturalnym językiem zapytań służącym do operowania na bazie danych. SQL pozwala na tworzenie, modyfikowanie czy usuwanie tabel,
-
-a także na manipulacje rekordami z danymi poprzez takie operacje jak np. dodawanie, usuwanie czy edycja rekordów. SQL jest językiem programowania opartym na paradygmacie deklaratywnym, oznacza to tyle, że programista musi opisać, jakie warunki ma spełniać końcowe rozwiązanie,
-
-a nie kroki, które powinny zostać podjęte w ramach uzyskania pozytywnego wyniku tak jak przypadku paradygmatu imperatywnego .
+SQL (Structured Query Language) is a structured query language used to operate on a database. SQL allows the creation, modification or deletion of tables, as well as the manipulation of data records through operations such as adding, deleting or editing records. SQL is a programming language based on the declarative paradigm, this means that the programmer must describe what conditions the final solution should meet, rather than the steps that should be taken in obtaining a positive result as in the case of the imperative paradigm.
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.013.png)
 
-EntityFramework Core to narzędzie, które umożliwia mapowanie obiektoworelacyjne jest to tzw. ORM (ang. Object-relational mapping). Zadaniem EntityFramework jest dostarczenie encji, które są zgodne z tabelami w bazach danych. Znajomość EntityFramework umożliwia prace programiście na wyższym poziomie abstrakcji, eliminuje w dużym stopniu potrzebę pisania większej ilości kodu, który ma na celu wykonanie operacji na danych, co skutkuje sytuacją, w której nawet osoba niedoświadczona w pracy z bazą danych jest w stanie poprzez EntityFramework sprawnie z nią pracować.
+EntityFramework Core is a tool that enables object-relational mapping this is called ORM (object-relational mapping). EntityFramework's task is to provide entities that are compatible with tables in databases. Familiarity with EntityFramework enables the programmer to work at a higher level of abstraction, eliminates to a large extent the need to write more code to perform operations on data, resulting in a situation where even a person inexperienced in working with a database is able through EntityFramework to work efficiently with it.
 
 
-Zastosowane narzędzia
+Tools used
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.014.png)
 
-Microsoft Visual Studio jest to zintegrowane środowisko programistyczne stworzone przez firmę Microsoft. Stworzone zostało w celu usprawnienia pracy programistów poprzez udostępnienie im wygodnego interfejsu do tworzenia oraz testowania oprogramowania. Posiada m.in. zintegrowany debugger, czyli narzędzie pozwalające na dynamiczną analizę programów, w celu wyszukania błędów, kolejnym z domyślnych rozwiązań zaimplementowanych do Visual Studio jest środowisko Git, które ma na celu wspomagać m.in. prace zespołów programistów poprzez udostępnienie im interfejsu do współdzielenia kodu. Microsoft Visual Studio często używane jest do tworzenia oprogramowania, które posiada graficzny panel przeznaczony do wspomagania pracy użytkownika aplikacji, a także do tworzenia API lub aplikacji konsolowych. Pozwala tworzyć m.in. aplikacje typu Windows Form, WPF, aplikacje mobilne, aplikacje konsolowe czy aplikacje internetowe przy pomocy platformy ASP.
+Microsoft Visual Studio is an integrated development environment created by Microsoft. It was created to streamline the work of programmers by providing them with a convenient interface for developing and testing software. Among other things, it has an integrated debugger, which is a tool that allows dynamic analysis of programs to look for errors, another of the default solutions implemented into Visual Studio is the Git environment, which is designed to support, among other things, the work of teams of developers by providing them with an interface for sharing code. Microsoft Visual Studio is often used to develop software that has a graphical panel designed to support the work of the application user, as well as to create APIs or console applications. It allows you to create Windows Form, WPF, mobile applications, console applications or web applications using the ASP platform, among others.
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.015.png)
 
-Microsoft Sql Server Management Studio to zintegrowane środowisko do wspomagania zarządzania komponentami wchodzącymi w skład Microsoft SQL Server takimi jak m.in. bazy danych. Jest to narzędzie pozwalające na wygodną manipulację bazami danych poprzez używanie podstawowego języka zapytań tej architektury, jakim jest T-SQL.
+Microsoft Sql Server Management Studio is an integrated environment for supporting the management of components included in Microsoft SQL Server such as databases, among others. It is a tool that allows convenient manipulation of databases by using the basic query language of this architecture, which is T-SQL.
 
 
-Schemat bazy danych
+Database schema
 
-Baza danych![ref2]![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.016.jpeg)**
+![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.016.jpeg)
 
-W dalszej części znajduje się dokumentacja dotycząca aplikacji internetowej Smart Delivery![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.017.png)
+Following is the documentation for the Smart Delivery web application
+
+![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.017.png)
 
 
-Widok rejestracji nowego użytkownika
+New user registration view
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.019.jpeg)
 
-Powyżej znajduje się widok rejestracji, pierwsze rejestrowane konto jest kontem z przyznanymi uprawnieniami administratora.
+Above is the registration view, the first account to be registered is an account with administrator privileges granted.
 
-**Widok panelu logowania![ref2]**
+View of the login panel
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.020.jpeg)
 
-Powyżej znajduje się widok logowania administratora, może on dodawać kategorie, zarządzać użytkownikami, tworzyć restauracje, dodawać pracowników do restauracji.
+Above is the login view of the administrator, he can add categories, manage users, create restaurants, add employees to restaurants.
 
-**Zakres możliwości ![ref3]**
-
-**administratora**
-
-**W dalszej**
-
-**Zakres możliwości administratora![ref2]**
+The range of capabilities of the administrator
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.021.jpeg)
 
-Możliwość dodawania kategorii dań
+Ability to add categories of dishes
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.022.jpeg)
 
-**Przyciski zamieszczone obok nazwy danej kategorii odpowiadają za:**
+The buttons next to the name of a category are responsible for:
 
-Zielony przycisk - wyświetlenie informacji szczegółowych dotyczących kategorii Żółty przycisk - edycję kategorii
+Green button - displaying detailed information about the category Yellow button - editing the category
 
-Czerwony przycisk - usunięcie kategorii
+Red button - deleting a category
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.023.jpeg)
 
-W panelu detali danej kategorii możemy dodać dodatkowo podkategorie.
+In the details panel of a category, we can additionally add subcategories.
 
-**Możliwość dodawania  ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.024.jpeg)nowych restauracji** 
+Ability to add new restaurants
+
+![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.024.jpeg)
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.025.jpeg)
 
-**Lista restauracji oferuje:**
+The restaurant list offers:
 
-- Wyszukiwanie danej restauracji po nazwie, miejscowości
-- Zarządzanie restauracjami za pomocą przycisków umieszczonych obok nazwy placówki 
+- Search for a particular restaurant by name, locality
+- Managing restaurants using buttons next to the name of the establishment
 
-**Widok danych szczegółowych danej  ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.026.jpeg)restauracji umożliwia:** 
+The details view of a particular restaurant allows you to:
 
-- Dodawanie nowych pracowników 
-- Wyświetlenie listy aktualnych  pracowników 
-- Aktualizowanie danych restauracji 
+![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.026.jpeg)
+
+- Adding new employees 
+- Displaying the list of current employees 
+- Updating restaurant data
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.027.jpeg)
 
-Możliwość blokowania konta pracownika na podstawie listy pracowników
+Ability to block an employee's account from the employee list
 
 
-**Zakres możliwości ![ref3]**
+Range of possibilities for an employee
 
-**pracownika**
+Ability to add new dishes
 
-**W dalszej**
-
-**Zakres możliwości pracownika![ref2]**
-
-**Możliwość dodawania  ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.028.jpeg)nowych potraw** 
+![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.028.jpeg) 
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.029.jpeg)
 
-Lista potraw restauracji może być edytowana oraz aktualizowana przez pracownika. 
+The restaurant's food list can be edited and updated by the employee.
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.030.jpeg)
 
-Możliwość zarządzania informacjami dodatkowymi danej potrawy oraz jej aktualizowania.
+The ability to manage and update the additional information of a given dish.
 
 
-**Zakres możliwości ![ref3]**
+The range of possibilities for the customer
 
-**klienta**
+The customer, after registering his account and logging into it, will be redirected to the start screen through which he can search for the restaurant he is interested in and place an order     
 
-**W dalszej**
+![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.031.jpeg)
 
-**Zakres możliwości klienta![ref2]**
+After selecting the restaurant he is interested in, he will be redirected to the current offer of the restaurant in question.    
 
-Klient po zarejestrowaniu swojego      ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.031.jpeg)konta i zalogowaniu się na nie, zostanie  przekierowany do ekranu startowego  poprzez który ma możliwość            wyszukania interesującej go restauracji  i złożenie zamówienia. 
+![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.032.jpeg)
 
-Po wybraniu           ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.032.jpeg)interesującego go      lokalu zostanie        przekierowany do      aktualnej oferty danej  restauracji. 
+After selecting the dish he is interested in, he will be redirected to a view that allows him to add the dish to his shopping cart.             
 
-Po wybraniu              ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.033.jpeg)interesującego go dania  zostanie przekierowany  do widoku               umożliwiającego dodanie  potrawy do koszyka. 
+![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.033.jpeg)
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.034.png)
 
-Jeżeli danie zostanie  ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.035.jpeg)poprawnie dodane na  powyższym pasku zmieni  się aktualny stan koszyka. 
+If the dish is successfully added in the above bar, the current status of the cart will change 
 
-Po przejściu do koszyka  ![]./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.036.jpeg)mamy możliwość         zarządzania jego          zawartością,             kontynuowania zakupów  bądź zrealizowania       zamówienia. 
+ ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.035.jpeg)
 
-Podczas składania             ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.037.jpeg)zamówienia użytkownik       zostanie poproszony o         wprowadzenie szczegółowych  danych dotyczących adresu  dostawy. 
+
+Once in the shopping cart, we have the option to manage its contents, continue shopping or complete the order.
+
+![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.036.jpeg)
+
+When placing an order, you will be asked to enter details of the delivery address.
+
+![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.037.jpeg)
 
 ![](./md_imgs/spose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.038.jpeg)
 
-Aby sukcesywnie zakończyć fazę składania zamówienia użytkownik powinien za nie zapłacić. Płatności realizowane są przy pomocy kodu BLIK.
+To successively complete the ordering phase, the user should pay for it. Payments are made using the BLIK code.
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.039.jpeg)
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.040.png)
 
-Jeżeli kod BLIK zostanie przyjęty przez system realizujący płatności, złożenie zamówienia zakończy się sukcesem a zamówienie przejdzie w fazę realizacji. W przypadku gdy zostanie wprowadzony błędny kod BLIK transakcja zostanie odrzucona. 
+If the BLIK code is accepted by the payment processing system, the order placement will be successful and the order will proceed to the processing stage. If an incorrect BLIK code is entered, the transaction will be rejected.
 
 [ref1]: ./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.002.png
-[ref2]: ./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.003.png
-[ref3]: ./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.004.png
-[ref4]: ./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.018.png
