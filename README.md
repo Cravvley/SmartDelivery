@@ -1,8 +1,5 @@
-Smart Delivery 
-
-![ref1]**
-
-Koncept aplikacji
+Smart Delivery ![ref1]**
+*Koncept aplikacji!
 
 W dobie aktualnie występującej pandemii dostęp do stacjonarnych usług, do których szary Kowalski był przyzwyczajony, został utrudniony. Naprzeciw temu problemowi proponuję stworzenie aplikacji do zarządzania zamawiania żywności z restauracji. Celem tej aplikacji będzie udostępnienie użytkownikowi interfejsu, poprzez który będzie on mógł zamówić sobie dowolny produkt z dowolnej restauracji poprzez opisywaną aplikacje, która udostępnia dowóz towaru w sposób prosty i intuicyjny. Projekt będzie implementowany przy pomocy technologii Microsoftu, a mianowicie przy zastosowaniu frameworka .net core MVC, pozwoli to w szybki sposób uzyskać zadowalający efekt i zapewni wygodę pracy programistą biorącym czynny udział w projekcie. Aplikacja będzie oparta m.in. o architekturę n-layer, back-end będzie tworzony przy pomocy języka c# a front w oparciu o biblioteke css Bootstrap.
 
@@ -60,8 +57,7 @@ Microsoft Sql Server Management Studio to zintegrowane środowisko do wspomagani
 
 Schemat bazy danych
 
-![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.016.jpeg)**
-
+Baza danych![ref2]![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.016.jpeg)**
 
 W dalszej części znajduje się dokumentacja dotycząca aplikacji internetowej Smart Delivery![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.017.png)
 
@@ -72,16 +68,19 @@ Widok rejestracji nowego użytkownika
 
 Powyżej znajduje się widok rejestracji, pierwsze rejestrowane konto jest kontem z przyznanymi uprawnieniami administratora.
 
-Widok panelu logowania
+**Widok panelu logowania![ref2]**
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.020.jpeg)
 
 Powyżej znajduje się widok logowania administratora, może on dodawać kategorie, zarządzać użytkownikami, tworzyć restauracje, dodawać pracowników do restauracji.
 
+**Zakres możliwości ![ref3]**
 
+**administratora**
 
-Zakres możliwości administratora
+**W dalszej**
 
+**Zakres możliwości administratora![ref2]**
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.021.jpeg)
 
@@ -99,22 +98,16 @@ Czerwony przycisk - usunięcie kategorii
 
 W panelu detali danej kategorii możemy dodać dodatkowo podkategorie.
 
-Możliwość dodawania  
-
-![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.024.jpeg)
-
-nowych restauracji 
+**Możliwość dodawania  ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.024.jpeg)nowych restauracji** 
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.025.jpeg)
 
-Lista restauracji oferuje:
+**Lista restauracji oferuje:**
 
 - Wyszukiwanie danej restauracji po nazwie, miejscowości
 - Zarządzanie restauracjami za pomocą przycisków umieszczonych obok nazwy placówki 
 
-Widok danych szczegółowych danej restauracji umożliwia: 
-
-![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.026.jpeg)** 
+**Widok danych szczegółowych danej  ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.026.jpeg)restauracji umożliwia:** 
 
 - Dodawanie nowych pracowników 
 - Wyświetlenie listy aktualnych  pracowników 
@@ -125,11 +118,15 @@ Widok danych szczegółowych danej restauracji umożliwia:
 Możliwość blokowania konta pracownika na podstawie listy pracowników
 
 
-Zakres możliwości pracownika
+**Zakres możliwości ![ref3]**
 
-Możliwość dodawania nowych potraw
+**pracownika**
 
-![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.028.jpeg)
+**W dalszej**
+
+**Zakres możliwości pracownika![ref2]**
+
+**Możliwość dodawania  ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.028.jpeg)nowych potraw** 
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.029.jpeg)
 
@@ -140,8 +137,13 @@ Lista potraw restauracji może być edytowana oraz aktualizowana przez pracownik
 Możliwość zarządzania informacjami dodatkowymi danej potrawy oraz jej aktualizowania.
 
 
-Zakres możliwości klienta
+**Zakres możliwości ![ref3]**
 
+**klienta**
+
+**W dalszej**
+
+**Zakres możliwości klienta![ref2]**
 
 Klient po zarejestrowaniu swojego      ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.031.jpeg)konta i zalogowaniu się na nie, zostanie  przekierowany do ekranu startowego  poprzez który ma możliwość            wyszukania interesującej go restauracji  i złożenie zamówienia. 
 
