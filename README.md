@@ -1,4 +1,4 @@
-**Smart Delivery
+**Smart Delivery ![ref1]**
 
 **Koncept aplikacji![ref2]**
 
