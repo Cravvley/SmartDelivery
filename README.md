@@ -1,16 +1,4 @@
-**Smart Delivery![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.001.png)![ref1]**
-
-**Uczestnicy projektu![ref2]**
-
-1. Daniel Niekurzak – lider zespołu, odpowiedzialny za koordynowanie prac wykonywanych przy realizacji projektu, tworzenie aplikacji od strony backendu oraz projektowanie bazy danych i konfiguracja projektu, testowanie aplikacji
-1. Paweł Nita – członek zespołu odpowiedzialny za tworzenie aplikacji od strony frontendu, testowanie aplikacji
-1. Szymon Zieliński – członek zespołu odpowiedzialny za tworzenie aplikacji od strony backendu, testowanie aplikacji
-
-Wszyscy ponadto byli odpowiedzialni za określenie wymagań funkcjonalnych aplikacji.
-
-**Koncept aplikacji![ref3]**
-
-**W dalszej**
+**Smart Delivery
 
 **Koncept aplikacji![ref2]**
 
