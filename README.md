@@ -1,6 +1,6 @@
 Smart Delivery 
 
-Brief
+Brief:
 The application was created to pass the IT project management course at Częstochowa University of Technology
 
 ![ref1]
@@ -63,8 +63,6 @@ Database schema
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.016.jpeg)
 
 Following is the documentation for the Smart Delivery web application
-
-![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.017.png)
 
 
 New user registration view
