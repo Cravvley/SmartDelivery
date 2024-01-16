@@ -1,16 +1,9 @@
-**Smart Delivery ![ref1]**
-
-**Koncept aplikacji![ref2]**
+Smart Delivery ![ref1]**
+*Koncept aplikacji!
 
 W dobie aktualnie występującej pandemii dostęp do stacjonarnych usług, do których szary Kowalski był przyzwyczajony, został utrudniony. Naprzeciw temu problemowi proponuję stworzenie aplikacji do zarządzania zamawiania żywności z restauracji. Celem tej aplikacji będzie udostępnienie użytkownikowi interfejsu, poprzez który będzie on mógł zamówić sobie dowolny produkt z dowolnej restauracji poprzez opisywaną aplikacje, która udostępnia dowóz towaru w sposób prosty i intuicyjny. Projekt będzie implementowany przy pomocy technologii Microsoftu, a mianowicie przy zastosowaniu frameworka .net core MVC, pozwoli to w szybki sposób uzyskać zadowalający efekt i zapewni wygodę pracy programistą biorącym czynny udział w projekcie. Aplikacja będzie oparta m.in. o architekturę n-layer, back-end będzie tworzony przy pomocy języka c# a front w oparciu o biblioteke css Bootstrap.
 
-**Zastosowana ![ref3]**
-
-**technologia**
-
-**W dalszej**
-
-**Zastosowana technologia![ref2]**
+Zastosowane technologie
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.005.png)
 
@@ -51,13 +44,7 @@ a nie kroki, które powinny zostać podjęte w ramach uzyskania pozytywnego wyni
 EntityFramework Core to narzędzie, które umożliwia mapowanie obiektoworelacyjne jest to tzw. ORM (ang. Object-relational mapping). Zadaniem EntityFramework jest dostarczenie encji, które są zgodne z tabelami w bazach danych. Znajomość EntityFramework umożliwia prace programiście na wyższym poziomie abstrakcji, eliminuje w dużym stopniu potrzebę pisania większej ilości kodu, który ma na celu wykonanie operacji na danych, co skutkuje sytuacją, w której nawet osoba niedoświadczona w pracy z bazą danych jest w stanie poprzez EntityFramework sprawnie z nią pracować.
 
 
-**Zastosowane ![ref3]**
-
-**narzędzia**
-
-**W dalszej**
-
-**Zastosowane narzędzia![ref2]**
+Zastosowane narzędzia
 
 ![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.014.png)
 
@@ -68,14 +55,9 @@ Microsoft Visual Studio jest to zintegrowane środowisko programistyczne stworzo
 Microsoft Sql Server Management Studio to zintegrowane środowisko do wspomagania zarządzania komponentami wchodzącymi w skład Microsoft SQL Server takimi jak m.in. bazy danych. Jest to narzędzie pozwalające na wygodną manipulację bazami danych poprzez używanie podstawowego języka zapytań tej architektury, jakim jest T-SQL.
 
 
-**Schemat bazy danych![ref3]**
-
-**W dalszej**
+Schemat bazy danych
 
 **Baza danych![ref2]![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.016.jpeg)**
-
-
-
 
 W dalszej części znajduje się dokumentacja dotycząca aplikacji internetowej Smart Delivery![](./md_imgs/Aspose.Words.43edbb3c-a16e-40c1-9a15-524b83f4fe29.017.png)![ref4]
 
